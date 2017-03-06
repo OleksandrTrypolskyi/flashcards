@@ -3069,7 +3069,7 @@ fieldset[disabled] a.btn {
 }
 .btn-default:hover {
   color: #333;
-  background-color: #e6e6e6;
+  background-color: #000;
   border-color: #adadad;
 }
 .btn-default:active,
@@ -6755,3 +6755,11 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+
+
+
+.navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+  background-color: red;
+}
