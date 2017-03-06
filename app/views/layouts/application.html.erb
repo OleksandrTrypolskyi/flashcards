@@ -9,14 +9,14 @@
   </head>
 
   <body>
-    <section id="container">
-      <header class="clearfix">
-        <h1>Флэшкарточкер</h1>
-        <ul class="navigation-links">
-          <li><a href="#">Все карточки</a></li>
-          <li><a href="#">Добавить карточку</a></li>
+    <header class="clearfix navbar navbar-inverse">
+      <h1>Флэшкарточкер</h1>
+        <ul class="navigation-links nav navbar-nav navbar-right">
+          <li><a class="btn btn-default" href="#" role="button">Все карточки</a></li>
+          <li><a class="btn btn-default" href="#">Добавить карточку</a></li>
         </ul>
       </header>
+    <section id="container">
       <%= yield %>
     </section>
   </body>
