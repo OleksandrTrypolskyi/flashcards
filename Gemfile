@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Use RuboCop code analyzer
+gem 'rubocop', '~> 0.47.1', require: false
 
 
 group :development, :test do

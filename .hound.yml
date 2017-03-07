@@ -1,0 +1,20 @@
+ruby:
+  config_file: .rubocop.yml
+
+coffeescript:
+  config_file: coffeelint.json
+
+jshint:
+  config_file: .jshintrc
+
+scss:
+  enabled: false
+
+haml:
+  enabled: false
+
+go:
+  enabled: false
+
+swift:
+  enabled: false
