@@ -2,10 +2,10 @@ ruby:
   config_file: .rubocop.yml
 
 coffeescript:
-  config_file: coffeelint.json
+  enabled: false
 
 jshint:
-  config_file: .jshintrc
+  enabled: false
 
 scss:
   enabled: false
