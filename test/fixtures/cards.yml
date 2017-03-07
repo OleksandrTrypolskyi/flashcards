@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Original_text: MyString
+  Translated_text: MyString
+  Review_date: 2017-03-07 11:56:22
+
+two:
+  Original_text: MyString
+  Translated_text: MyString
+  Review_date: 2017-03-07 11:56:22
