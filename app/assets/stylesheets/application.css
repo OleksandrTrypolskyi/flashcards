@@ -34,10 +34,6 @@ body {
    border-radius: 0px;
  }
 
- .btn-default:hover {
-   background-color: lightblue;
- }
-
  header > h1 {
    float: left;
    margin: 0;
@@ -55,6 +51,18 @@ body {
 
  .index-page p {
    text-align: center;
+ }
+
+ .cards-index-table {
+   border-collapse: collapse;
+ }
+
+ .cards-index-table th, .cards-index-table td {
+   text-align: center;
+   border: 2px solid black;
+   background-color: lightgray;
+
+   padding: 10px 15px;
  }
 
 
