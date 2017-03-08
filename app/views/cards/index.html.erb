@@ -3,12 +3,19 @@
     <th>Original_text</th>
     <th>Translated_text</th>
     <th>Review_date</th>
+    <th>Actions</th>
   </tr>
   <% @cards.each do |c| %>
     <tr>
-      <td><%= c.Original_text %></td>
-      <td><%= c.Translated_text %></td>
-      <td><%= c.Review_date.day %>/<%= c.Review_date.month %>/<%= c.Review_date.year %></td>
+      <td><%= c.original_text %></td>
+      <td><%= c.translated_text %></td>
+      <td><%= c.review_date.day %>/<%= c.review_date.month %>/<%= c.review_date.year %></td>
+      <td>
+        <%= link_to 'Show', card_path(c) %><br>
+        <%= link_to 'Edit', edit_card_path(c) %><br>
+        <%= link_to 'Delete', card_path(c), method: :delete,
+          data: {confirm: 'Are you sure?'} %>
+      </td>
     </tr>
   <% end %>
 </table>
