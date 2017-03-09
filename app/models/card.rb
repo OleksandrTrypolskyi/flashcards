@@ -13,7 +13,7 @@ class Card < ApplicationRecord
     end
   end
 
-  before_validation :set_review_date
+  before_create :set_review_date
 
   protected
   def set_review_date

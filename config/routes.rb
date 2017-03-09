@@ -7,5 +7,4 @@ Rails.application.routes.draw do
 
   get 'cards', to: 'cards#index'
   get 'card', to: 'cards#show'
-
 end
