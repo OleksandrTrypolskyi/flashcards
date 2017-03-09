@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 # Use RuboCop code analyzer
 gem 'rubocop', '~> 0.47.1', require: false
+# Use Simple form
+gem 'simple_form'
 
 
 group :development, :test do

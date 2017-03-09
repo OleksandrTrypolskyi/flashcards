@@ -1,0 +1,11 @@
+<h1>Card</h1>
+<h2>Original text:</h2>
+<p><%= @card.original_text %></p>
+<h2>Translated text:</h2>
+<p><%= @card.translated_text %></p>
+<h2>Review date:</h2>
+<p><%= @card.review_date %></p>
+<p style="margin-top: 20px;">
+  <%= link_to 'Cards list', cards_path, class: "btn btn-default" %>
+  <%= link_to 'Home page', home_path, class: "btn btn-default" %>
+</p>
