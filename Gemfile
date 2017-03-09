@@ -39,6 +39,11 @@ gem 'rubocop', '~> 0.47.1', require: false
 # Use Simple form
 gem 'simple_form'
 
+# Use nokogiri
+gem 'nokogiri'
+
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
