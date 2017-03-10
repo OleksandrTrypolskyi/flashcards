@@ -19,7 +19,7 @@ class Card < ApplicationRecord
     self.review_date = Date.today + 3.days
   end
 
-  scope :cards_must_be_repeated, -> { where('review_date <= ?', Date.today) }
+  scope :for_review, -> { where('review_date <= ?', Date.today) }
 
   def confirm_reviewing(original_verification)
     self.original_text == original_verification
