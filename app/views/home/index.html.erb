@@ -4,12 +4,12 @@
       <%= content_tag :div, msg, class: name %>
     <% end %>
   <% end %>
-  <% if @card %>
+  <% if @card_for_review %>
     <h1>It's time to repeat words!</h1>
-    <h2>Do you remember the translation of this word: <%= @card.translated_text %>?</h2>
-    <%= simple_form_for :session, url: { controller: :card_verification, action: :update } do |form| %>
-      <%= form.input  :original_text_verification  %>
-      <%= hidden_field_tag 'original_text', @card.original_text %>
+    <h2>Do you remember the translation of this word: <%= @card_for_review.translated_text %>?</h2>
+    <%= simple_form_for @card_for_review, url: { controller: :card_verification, action: :update } do |form| %>
+      <%= form.input  :original_text  %>
+      <%= hidden_field_tag 'id', @card_for_review.id %>
       <%= form.button :submit, value: "Check", style: "width: 100%" %>
     <% end %>
   <% else %>

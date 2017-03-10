@@ -8,7 +8,5 @@ Rails.application.routes.draw do
   get 'cards', to: 'cards#index'
   get 'card',  to: 'cards#show'
 
-
-  # resources :card_verification
-  post 'card_verification',  to: 'card_verification#update'
+  patch 'card_verification',  to: 'card_verification#update'
 end

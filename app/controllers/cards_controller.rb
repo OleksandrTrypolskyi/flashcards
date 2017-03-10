@@ -42,7 +42,6 @@ class CardsController < ApplicationController
     redirect_to cards_path
   end
 
-
   private
 
   def card_params
