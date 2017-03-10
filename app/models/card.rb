@@ -13,9 +13,9 @@ class Card < ApplicationRecord
     end
   end
 
-  before_create :set_review_date
+  before_create :update_review_date
 
-  def set_review_date
+  def update_review_date
     self.review_date = Date.today + 3.days
   end
 
