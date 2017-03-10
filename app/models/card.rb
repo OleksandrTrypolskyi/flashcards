@@ -15,8 +15,10 @@ class Card < ApplicationRecord
 
   before_create :set_review_date
 
-  protected
   def set_review_date
-    self.review_date = Time.now + 3.days
+    self.review_date = Date.today + 3.days
   end
+
+  scope :cards_must_be_repeated, -> { where('review_date <= ?', Date.today)}
+
 end
