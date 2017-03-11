@@ -17,6 +17,11 @@
         </ul>
       </header>
     <section id="container">
+      <% if flash %>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: name %>
+        <% end %>
+      <% end %>
       <%= yield %>
     </section>
   </body>
