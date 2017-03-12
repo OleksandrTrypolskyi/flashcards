@@ -13,10 +13,16 @@ class Card < ApplicationRecord
     end
   end
 
-  before_create :set_review_date
+  before_create :update_review_date
 
-  protected
-  def set_review_date
-    self.review_date = Time.now + 3.days
+  def update_review_date
+    self.review_date = Date.today + 3.days
+    self.save
+  end
+
+  scope :for_review, -> { where('review_date <= ?', Date.today) }
+
+  def confirm_reviewing(original_verification)
+    self.original_text == original_verification
   end
 end

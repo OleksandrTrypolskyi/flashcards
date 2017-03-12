@@ -10,13 +10,18 @@
 
   <body>
     <header class="clearfix navbar navbar-inverse">
-      <h1>Флэшкарточкер</h1>
+      <h1><%= link_to "Флэшкарточкер", root_path %></h1>
         <ul class="navigation-links nav navbar-nav navbar-right">
           <li><%= link_to "Все карточки", cards_path, class: "btn btn-default" %></li>
           <li><%= link_to "Добавить карточку", new_card_path, class: "btn btn-default" %></li>
         </ul>
       </header>
     <section id="container">
+      <% if flash %>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: name %>
+        <% end %>
+      <% end %>
       <%= yield %>
     </section>
   </body>

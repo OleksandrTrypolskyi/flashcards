@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :cards
 
   get 'cards', to: 'cards#index'
-  get 'card', to: 'cards#show'
+  get 'card',  to: 'cards#show'
+
+  patch 'card_verification',  to: 'card_verification#update'
 end

@@ -1,5 +1,13 @@
 <section class="index-page">
-  <p style="font-size: 22px;">
-    Первый в мире удобный менеджер флеш-карточек. Именно так.
-  </p>
+  <% if @card %>
+    <h1>It's time to repeat words!</h1>
+    <h2>Do you remember the translation of this word: <%= @card.translated_text %>?</h2>
+    <%= simple_form_for @card, url: { controller: :card_verification, action: :update } do |form| %>
+      <%= form.input  :original_text  %>
+      <%= hidden_field_tag 'id', @card.id %>
+      <%= form.button :submit, value: "Check", style: "width: 100%" %>
+    <% end %>
+  <% else %>
+  <h3>Первый в мире удобный менеджер флеш-карточек. Именно так.</h3>
+  <% end %>
 </section>
