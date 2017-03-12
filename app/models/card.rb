@@ -13,10 +13,10 @@ class Card < ApplicationRecord
     end
   end
 
-  before_create :update_review_date
+  before_save :update_review_date
 
   def update_review_date
-    self.review_date = Date.today + 3.days
+    update_attribute(:review_date, Date.today + 3.days)
   end
 
   scope :for_review, -> { where('review_date <= ?', Date.today) }
