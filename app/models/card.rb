@@ -13,7 +13,7 @@ class Card < ApplicationRecord
     end
   end
 
-  before_save :update_review_date
+  before_create :update_review_date
 
   def update_review_date
     update_attribute(:review_date, Date.today + 3.days)
