@@ -8,7 +8,7 @@ RSpec.describe Card, :type => :model do
   end
 
   it '.update_review_date' do
-    card = Card.new(translated_text: 'bus', original_text: 'автобус', review_date: Date.today)
+    card = Card.create!(translated_text: 'bus', original_text: 'автобус', review_date: Date.today)
     card.update_review_date
     expect(card.review_date).to eql(Date.today + 3.days)
   end
@@ -22,5 +22,4 @@ RSpec.describe Card, :type => :model do
     card = Card.new(original_text: "house")
     expect(card.confirm_reviewing('house')).to be true
   end
-
 end
