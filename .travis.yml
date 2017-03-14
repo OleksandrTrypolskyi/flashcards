@@ -11,5 +11,4 @@ before_script:
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
-  - RSpec spec/models/card_spec.rb
-  - RSpec spec/features/card_check_spec.rb
+  - bundle exec rspec spec/
