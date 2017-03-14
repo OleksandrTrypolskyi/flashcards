@@ -8,7 +8,7 @@ class CardVerificationController < ApplicationController
       redirect_to cards_path
     else
       flash[:alert] = 'Translation is not correct :( Try again!'
-      redirect_to home_url
+      redirect_to root_path
     end
   end
 end

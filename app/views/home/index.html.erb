@@ -1,11 +1,12 @@
-<section class="index-page">
+<section class='index-page'>
   <% if @card %>
+    <%= @card.review_date %>
     <h1>It's time to repeat words!</h1>
     <h2>Do you remember the translation of this word: <%= @card.translated_text %>?</h2>
     <%= simple_form_for @card, url: { controller: :card_verification, action: :update } do |form| %>
       <%= form.input  :original_text, input_html: {value: ''}  %>
       <%= hidden_field_tag 'id', @card.id %>
-      <%= form.button :submit, value: "Check", style: "width: 100%" %>
+      <%= form.button :submit, value: 'Check', style: 'width: 100%' %>
     <% end %>
   <% else %>
   <h3>Первый в мире удобный менеджер флеш-карточек. Именно так.</h3>

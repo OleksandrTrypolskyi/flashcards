@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+  - 2.3.3
+  - jruby
+services:
+  - postgresql
+env:
+  - DB=pgsql
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database test_databases' -U user1
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - RSpec spec/models/card_spec.rb
+  - RSpec spec/features/card_check_spec.rb
