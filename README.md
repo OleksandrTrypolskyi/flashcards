@@ -1,4 +1,4 @@
-https://travis-ci.org/TrypolskyiS/flashcards.svg?branch=master
+
 [![Build Status](https://travis-ci.org/TrypolskyiS/flashcards.svg?branch=master)](https://travis-ci.org/TrypolskyiS/flashcards)
 # README
 
