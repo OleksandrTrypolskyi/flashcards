@@ -65,3 +65,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'travis'
 end
+# Use for correct work of Travis Ci
+gem 'rack'
+gem 'nio4r'
