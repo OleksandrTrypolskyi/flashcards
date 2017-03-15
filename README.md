@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/TrypolskyiS/flashcards.svg?branch=Task_7)](https://travis-ci.org/TrypolskyiS/flashcards)
-
 # README
 
 This README would normally document whatever steps are necessary to get the
