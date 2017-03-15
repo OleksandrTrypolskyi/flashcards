@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
@@ -42,9 +41,6 @@ gem 'simple_form'
 # Use nokogiri
 gem 'nokogiri'
 
-
-
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -62,8 +58,17 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
-# Use rspec
+# Use rspec, factory_girl and capybara for testing application
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'travis'
+end
+# Use for correct work of Travis Ci
+gem 'rack'
+gem 'nio4r'
+
+group :test do
+  gem 'database_cleaner'
 end

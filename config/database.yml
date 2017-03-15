@@ -16,3 +16,4 @@
  test:
    <<: *default
    database: test_databases
+   username: postgres
