@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.feature 'Card checking', :type => :feature do
   DatabaseCleaner.strategy = :transaction
+  
+  let(:card) {create :card}
 
   describe 'All cards are checked' do
-    let(:card) { create :card }
-
     it 'Displays correct view of home page' do
       visit root_path
       expect(page).to have_content 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
@@ -13,8 +13,6 @@ RSpec.feature 'Card checking', :type => :feature do
   end
 
   describe 'Card checking' do
-    let(:card) {create :card}
-
     before (:each) do
       card.update_attribute(:review_date, Date.today - 10.days)
       visit root_path
