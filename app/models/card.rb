@@ -28,4 +28,6 @@ class Card < ApplicationRecord
   def confirm_reviewing(original_verification)
     self.original_text == original_verification
   end
+
+  belongs_to :user, inverse_of: :cards
 end

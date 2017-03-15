@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Card checking', :type => :feature do
   DatabaseCleaner.strategy = :transaction
-  
-  let(:card) {create :card}
+  let(:card) { create :card }
 
   describe 'All cards are checked' do
     it 'Displays correct view of home page' do
@@ -13,7 +12,7 @@ RSpec.feature 'Card checking', :type => :feature do
   end
 
   describe 'Card checking' do
-    before (:each) do
+    before(:each) do
       card.update_attribute(:review_date, Date.today - 10.days)
       visit root_path
       expect(page).to have_content 'Do you remember the translation of this word:'
