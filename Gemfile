@@ -68,3 +68,7 @@ end
 # Use for correct work of Travis Ci
 gem 'rack'
 gem 'nio4r'
+
+group :test do
+  gem 'database_cleaner'
+end

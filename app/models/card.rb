@@ -20,8 +20,7 @@ class Card < ApplicationRecord
   end
 
   def update_review_date_after_check
-    self.review_date = Date.today + 3.days
-    self.save
+    update(review_date: Date.today + 3.days)
   end
 
   scope :for_review, -> { where('review_date <= ?', Date.today) }
