@@ -1,5 +1,5 @@
 <h1>Editing Card</h1>
-<%= simple_form_for @card, html: {class: 'form-horizontal'}, method: :patch do |form| %>
+<%= simple_form_for @card, html: {class: 'form-horizontal'} do |form| %>
   <% if @card.errors.any? %>
     <h2>
       <%= pluralize(@card.errors.count, 'error')%> prohibited this card from being created.

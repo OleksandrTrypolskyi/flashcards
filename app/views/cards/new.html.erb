@@ -10,8 +10,9 @@
     </ul>
     <% end %>
   <% end %>
-  <%= form.input :original_text %>
-  <%= form.input :translated_text %>
+  <%= form.input  :original_text %>
+  <%= form.input  :translated_text %>
+  <%= hidden_field_tag 'review_date', Date.today %>
   <%= form.button :submit %>
 <% end %>
 <p style="margin-top: 20px;">

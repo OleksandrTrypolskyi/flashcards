@@ -1,20 +1,19 @@
 class CardsController < ApplicationController
+  before_action :logged_in?
   before_action :find_card, only: [:edit, :update, :show, :destroy]
 
   def index
-    @cards = Card.all
+      @cards = current_user.cards.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
-    @card = Card.new
+    @card = current_user.cards.build
   end
 
   def create
-    @card = Card.new(card_params)
-
+    @card = current_user.cards.build(card_params)
     if @card.save
       redirect_to @card
     else
@@ -22,8 +21,7 @@ class CardsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @card.update(card_params)
@@ -33,12 +31,8 @@ class CardsController < ApplicationController
     end
   end
 
-  def delete
-  end
-
   def destroy
     @card.destroy
-
     redirect_to cards_path
   end
 
@@ -49,7 +43,23 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    @card = Card.find(params[:id])
+    if Card.where(id: params[:id]).empty?
+      flash[:alert] = "Card with id: #{params[:id]} does not exist"
+      redirect_to cards_path
+    elsif current_user.id == Card.find(params[:id]).user_id
+      @card = current_user.cards.find(params[:id])
+    else
+      flash[:alert] = 'Operations are possible only with own cards'
+      redirect_to root_path
+    end
   end
 
+  def logged_in?
+    if current_user.nil?
+      flash[:alert] = 'Please login or register'
+      redirect_to root_path
+    else
+      current_user
+    end
+  end
 end

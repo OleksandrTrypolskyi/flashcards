@@ -1,10 +1,10 @@
 class Card < ApplicationRecord
   validates :original_text,   presence: true, format: { with: /\A[a-zA-Zа-яА-ЯёЁ_,();:"']+\z/,
-    message: "Only letters can be used" }
+                                                        message: 'Only letters can be used' }
   validates :translated_text, presence: true, format: { with: /\A[a-zA-Zа-яА-ЯёЁ_,();:"']+\z/,
-    message: "Only letters can be used" }
+                                                        message: 'Only letters can be used' }
   validates :review_date, format: { with: /\A[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])\z/,
-    message: "Incorrect date format" }
+                                    message: 'Incorrect date format' }, allow_nil: true
   validate :original_cannot_be_similar_to_translated
 
   def original_cannot_be_similar_to_translated
