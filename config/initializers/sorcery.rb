@@ -66,7 +66,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack] .
   # Default: `[]`
   #
-  config.external_providers = [:vk]
+  config.external_providers = [:vk, :facebook, :twitter]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -98,18 +98,18 @@ Rails.application.config.sorcery.configure do |config|
   # Twitter will not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
   #
-  # config.twitter.key = ""
-  # config.twitter.secret = ""
-  # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
-  # config.twitter.user_info_mapping = {:email => "screen_name"}
+  config.twitter.key = ENV["TWITTER_KEY"]
+  config.twitter.secret = ENV["TWITTER_SECRET"]
+  config.twitter.callback_url = "http://127.0.0.1:3000/oauth/callback?provider=twitter"
+  config.twitter.user_info_mapping = {:email => "screen_name"}
   #
-  # config.facebook.key = ""
-  # config.facebook.secret = ""
-  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
-  # config.facebook.user_info_mapping = {:email => "name"}
-  # config.facebook.access_permissions = ["email", "publish_actions"]
-  # config.facebook.display = "page"
-  # config.facebook.api_version = "v2.2"
+  config.facebook.key = '226063437798408'
+  config.facebook.secret = '3102dd1db5af6c9fd340a969c6b032ff'
+  config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  config.facebook.user_info_mapping = {:email => "email"}
+  config.facebook.access_permissions = ["email"]
+  config.facebook.display = "popup"
+  config.facebook.api_version = "v2.8"
   #
   # config.github.key = ""
   # config.github.secret = ""
@@ -141,8 +141,8 @@ Rails.application.config.sorcery.configure do |config|
   # config.microsoft.user_info_mapping = {:email => "userPrincipalName", :username => "displayName"}
   # config.microsoft.scope = "openid email https://graph.microsoft.com/User.Read"
 
-  config.vk.key = '5952719'
-  config.vk.secret = 'hHYeHBGaI12r0uC2MAza'
+  config.vk.key = ENV["VK_KEY"]
+  config.vk.secret = ENV["VK_SECRET"]
   config.vk.callback_url = "http://127.0.0.1:3000/oauth/callback?provider=vk"
   config.vk.user_info_mapping = { :email => "email" }
 

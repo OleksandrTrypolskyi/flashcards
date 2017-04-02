@@ -20,6 +20,8 @@
       </ul>
       <% else %>
         <ul class="navigation-links nav navbar-nav navbar-right">
+          <li><%= link_to 'Login with TW', auth_at_provider_path(:provider => :twitter), class: "btn btn-default" %></li>
+          <li><%= link_to 'Login with FB', auth_at_provider_path(:provider => :facebook), class: "btn btn-default" %></li>
           <li><%= link_to 'Login with VK', auth_at_provider_path(:provider => :vk), class: "btn btn-default" %></li>
           <li><%= link_to 'Register', registration_path, class: "btn btn-default" %></li>
           <li><%= link_to 'Login', login_path, class: "btn btn-default" %></li>
