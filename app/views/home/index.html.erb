@@ -2,6 +2,7 @@
   <% if @card %>
     <h1>It's time to repeat words!</h1>
     <h2>Do you remember the translation of this word: <%= @card.translated_text %>?</h2>
+    <div class="card_image"><%= image_tag @card.picture.url %></div>
     <%= simple_form_for @card, url: { controller: :card_verification, action: :update } do |form| %>
       <%= form.input  :original_text, input_html: {value: ''}  %>
       <%= hidden_field_tag 'id', @card.id %>

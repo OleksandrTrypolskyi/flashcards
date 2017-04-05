@@ -30,4 +30,8 @@ class Card < ApplicationRecord
   end
 
   belongs_to :user, inverse_of: :cards
+
+  has_attached_file :picture, styles: { original: '360x360>'}
+  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
+  
 end

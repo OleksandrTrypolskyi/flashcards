@@ -12,6 +12,7 @@
   <% end %>
   <%= form.input  :original_text %>
   <%= form.input  :translated_text %>
+  <%= form.input  :picture, as: :file %>
   <%= hidden_field_tag 'review_date', Date.today %>
   <%= form.button :submit %>
 <% end %>
