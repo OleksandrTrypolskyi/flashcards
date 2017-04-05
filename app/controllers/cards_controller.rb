@@ -43,23 +43,6 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    if Card.where(id: params[:id]).empty?
-      flash[:alert] = "Card with id: #{params[:id]} does not exist"
-      redirect_to cards_path
-    elsif current_user.id == Card.find(params[:id]).user_id
       @card = current_user.cards.find(params[:id])
-    else
-      flash[:alert] = 'Operations are possible only with own cards'
-      redirect_to root_path
-    end
-  end
-
-  def logged_in?
-    if current_user.nil?
-      flash[:alert] = 'Please login or register'
-      redirect_to root_path
-    else
-      current_user
-    end
   end
 end

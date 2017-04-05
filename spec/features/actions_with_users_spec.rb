@@ -72,10 +72,5 @@ RSpec.feature 'Actions with users', :type => :feature do
       expect(page).to have_content('another@emaill.ruru')
     end
     # if can edit user so can delete user and show user.
-
-    it 'cannot edit other users when logged in' do
-      visit "/users/2/edit"
-      expect(page).to have_content('You have access only to your own user')
-    end
   end
 end

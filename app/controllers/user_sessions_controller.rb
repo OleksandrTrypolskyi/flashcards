@@ -4,15 +4,10 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if params[:password] == params[:password_confirmation]
-      if @user = login(params[:email], params[:password])
-        redirect_back_or_to(user_path(@user), notice: 'Login successful')
-      else
-        flash.now[:alert] = 'Login failed'
-        render 'new'
-      end
+    if @user = login(params[:email], params[:password])
+      redirect_back_or_to(user_path(@user), notice: 'Login successful')
     else
-      flash.now[:alert] = 'Password confirmation is wrong'
+      flash.now[:alert] = 'Login failed'
       render 'new'
     end
   end

@@ -63,13 +63,5 @@ RSpec.feature 'Actions with cards', :type => :feature do
       click_button 'Update Card'
       expect(page).to have_content('card')
     end
-
-    let!(:card) { create :card, id: '2' }
-
-    # if cannot edit so cannot delete and show as well.
-    it 'can edit only own card' do
-      visit "/cards/2/edit"
-      expect(page).to have_content('Operations are possible only with own cards')
-    end
   end
 end

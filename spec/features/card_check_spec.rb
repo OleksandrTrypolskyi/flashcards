@@ -5,9 +5,9 @@ RSpec.feature 'Card checking', :type => :feature do
   let!(:user) { create :user_with_cards }
 
   describe 'Home page when all cards are checked' do
-    it 'Displays correct view of home page' do
+    it 'Displays correct view of home page when not logged in' do
       visit root_path
-      expect(page).to have_content 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
+      expect(page).to have_content 'Please login or register'
     end
   end
 
@@ -37,6 +37,12 @@ RSpec.feature 'Card checking', :type => :feature do
       click_button 'Check'
       expect(current_path).to eq(root_path)
       expect(page).to have_content 'Translation is not correct :( Try again!'
+    end
+
+    it 'Displays correct view of home page' do
+      user.cards.first.update_attribute(:review_date, Date.today + 10.days)
+      visit root_path
+      expect(page).to have_content 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
     end
   end
 end

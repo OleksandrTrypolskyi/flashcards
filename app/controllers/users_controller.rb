@@ -36,22 +36,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def check_owner
-    if User.where(id: params[:id]).empty?
-        flash[:alert] = "User with id: #{params[:id]} does not exist"
-        flash[:notice] = 'You have access only to your own user'
-        redirect_to user_path(current_user.id)
-    elsif @user.id == User.find(params[:id]).id
-     @user
-    else
-     flash.now[:alert] = 'You have access only to your own user'
-    end
-  end
-
   def find_user
     if current_user
       @user = current_user
-      check_owner
     else
       flash[:alert] = 'Please login or register'
       redirect_to root_path
