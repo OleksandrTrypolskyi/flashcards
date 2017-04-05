@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'Actions with cards', :type => :feature do
-  DatabaseCleaner.strategy = :transaction
   let!(:user) { create :user_with_cards }
 
   describe 'When not logged in' do

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
  RSpec.describe User, type: :model do
-  DatabaseCleaner.strategy = :transaction
 
   let!(:user) { create :user_with_cards }
 

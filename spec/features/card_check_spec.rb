@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'Card checking', :type => :feature do
-  DatabaseCleaner.strategy = :transaction
   let!(:user) { create :user_with_cards }
 
   describe 'Home page when all cards are checked' do
