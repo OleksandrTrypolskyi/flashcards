@@ -29,9 +29,10 @@ class Card < ApplicationRecord
     self.original_text == original_verification
   end
 
-  belongs_to :user, inverse_of: :cards
+  belongs_to :user
+  belongs_to :deck
 
   has_attached_file :picture, styles: { original: '360x360>'}
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
-  
+
 end

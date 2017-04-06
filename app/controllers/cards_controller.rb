@@ -43,6 +43,6 @@ class CardsController < ApplicationController
   end
 
   def find_card
-      @card = current_user.cards.find(params[:id])
+    @card = current_user.cards.find(params[:id])
   end
 end

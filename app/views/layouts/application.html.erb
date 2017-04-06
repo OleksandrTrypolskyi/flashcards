@@ -13,6 +13,9 @@
       <h1><%= link_to "Флэшкарточкер", root_path %></h1>
       <% if current_user %>
       <ul class="navigation-links nav navbar-nav navbar-right">
+        <% if current_user.decks.empty? %>
+          <li><%= link_to 'Add Deck', new_deck_path, class: "btn btn-default" %></li>
+        <% end %>
         <li><%= link_to 'All Cards', cards_path, class: "btn btn-default" %></li>
         <li><%= link_to 'Add Card', new_card_path, class: "btn btn-default" %></li>
         <li><%= link_to 'Edit Profile', edit_user_path(current_user.id), class: "btn btn-default" %></li>
@@ -35,6 +38,8 @@
         <% end %>
       <% end %>
       <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
+      <%= console %>
     </section>
   </body>
 </html>

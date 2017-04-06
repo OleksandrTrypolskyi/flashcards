@@ -2,10 +2,12 @@ class User < ApplicationRecord
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
-  has_many :authentications, :dependent => :destroy
+  has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  has_many :cards, inverse_of: :user
+  has_many :cards, dependent: :destroy
+  has_many :decks, dependent: :destroy
+
   before_save :downcase_email
 
   validates :password, length: { minimum: 6 },
