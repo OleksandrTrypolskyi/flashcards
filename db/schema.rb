@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406094629) do
+ActiveRecord::Schema.define(version: 20170406123909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170406094629) do
     t.text     "picture_meta"
     t.integer  "user_id"
     t.integer  "deck_id"
+    t.index ["user_id"], name: "index_cards_on_user_id", using: :btree
   end
 
   create_table "decks", force: :cascade do |t|

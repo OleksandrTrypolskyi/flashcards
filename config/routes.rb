@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :users
   get '/registration', to: 'users#new'
-
+  resources :user_sessions
   get '/login', to: 'user_sessions#new'
   post '/login', to: 'user_sessions#create'
   post '/logout', to: 'user_sessions#destroy'

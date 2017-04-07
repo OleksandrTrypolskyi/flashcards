@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
     unless current_user
       flash[:alert] = 'Please login or register'
       redirect_to login_path
+    else
+      current_user
     end
   end
 end
