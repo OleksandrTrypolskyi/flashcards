@@ -5,17 +5,16 @@ class CardsController < ApplicationController
 
   def index
       @cards = current_user.cards.all
-      @decks = current_user.decks.all
   end
 
   def show; end
 
   def new
-    @card = current_user.decks.find(session[:current_deck_id]).cards.build
+    @card = current_user.decks.find(current_user.current_deck_id).cards.build
   end
 
   def create
-    @card = current_user.decks.find(session[:current_deck_id]).cards.build(card_params)
+    @card = current_user.decks.find(current_user.current_deck_id).cards.build(card_params)
     @card.user_id = current_user.id
     if @card.save
       redirect_to @card
@@ -47,15 +46,15 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    if session[:current_deck_id]
-      @card = current_user.decks.find(session[:current_deck_id]).cards.find(params[:id])
+    if current_user.current_deck_id
+      @card = current_user.decks.find(current_user.current_deck_id).cards.find(params[:id])
     else
       @card = current_user.cards.find(params[:id])
     end
   end
 
   def has_decks?
-    if session[:current_deck_id].nil?
+    if current_user.current_deck_id.nil?
       flash[:notice] = 'Cards can be created only in a deck. Please choose or create deck.'
       redirect_to decks_path
     end

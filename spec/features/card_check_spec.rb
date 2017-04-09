@@ -12,17 +12,9 @@ RSpec.feature 'Card checking', :type => :feature do
 
   describe 'Card checking' do
     before(:each) do
-      visit login_path
-      expect(page).to have_content 'Login'
-      fill_in 'email', with: user.email
-      fill_in 'password', with: 'password'
-      fill_in 'password_confirmation', with: 'password'
-      click_button 'login'
-      expect(page).to have_content 'Login successful'
+      login_user
       user.decks.first.cards.first.update_attribute(:review_date, Date.today - 10.days)
-      visit decks_path
-      click_on 'Activate Deck'
-      expect(page).to have_content 'Deck was activated.'
+      activate_deck
       visit root_path
       expect(page).to have_content 'Do you remember the translation of this word:'
     end

@@ -11,7 +11,7 @@
       <td><%= c.original_text %></td>
       <td><%= c.translated_text %></td>
       <td><%= c.review_date.day %>/<%= c.review_date.month %>/<%= c.review_date.year %></td>
-      <td><%= @decks.find(c.deck_id).name %></td>
+      <td><%= c.deck.name %></td>
       <td>
         <%= link_to 'Show', card_path(c) %><br>
         <%= link_to 'Edit', edit_card_path(c) %><br>

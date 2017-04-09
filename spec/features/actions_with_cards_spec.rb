@@ -27,15 +27,8 @@ RSpec.feature 'Actions with cards:', :type => :feature do
 
   describe 'When logged in and there is activated deck' do
     before(:each) do
-      visit login_path
-      expect(page).to have_content 'Login'
-      fill_in 'email', with: user.email
-      fill_in 'password', with: 'password'
-      click_button 'login'
-      expect(page).to have_content 'Login successful'
-      visit decks_path
-      click_on 'Activate Deck'
-      expect(page).to have_content 'Deck was activated.'
+      login_user
+      activate_deck
     end
 
     it 'can create card' do
@@ -73,12 +66,7 @@ RSpec.feature 'Actions with cards:', :type => :feature do
 
   describe 'When logged in but there is not activated deck' do
     before(:each) do
-      visit login_path
-      expect(page).to have_content 'Login'
-      fill_in 'email', with: user.email
-      fill_in 'password', with: 'password'
-      click_button 'login'
-      expect(page).to have_content 'Login successful'
+      login_user
     end
 
     it 'cannot create card' do

@@ -10,6 +10,7 @@ require 'capybara/rspec'
 require 'support/factory_girl.rb'
 require 'database_cleaner'
 require 'support/database_cleaner.rb'
+require 'support/helpers_methods.rb'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

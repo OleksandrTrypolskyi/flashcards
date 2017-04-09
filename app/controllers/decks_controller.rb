@@ -36,7 +36,8 @@ class DecksController < ApplicationController
   end
 
   def set_current_deck
-    session[:current_deck_id] = params[:deck_id]
+    user = User.find(current_user.id)
+    user.update_attribute(:current_deck_id, params[:deck_id])
     redirect_to root_path
     flash[:notice] = 'Deck was activated.'
   end

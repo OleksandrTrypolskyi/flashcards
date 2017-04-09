@@ -9,8 +9,4 @@ class ApplicationController < ActionController::Base
       current_user
     end
   end
-
-  def currnt_deck
-    current_deck = current_user.decks.find(params[:dek_id])
-  end
 end

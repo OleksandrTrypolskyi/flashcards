@@ -52,13 +52,7 @@ RSpec.feature 'Actions with users', :type => :feature do
 
   describe 'When logged in' do
     before(:each) do
-      visit login_path
-      expect(page).to have_content 'Login'
-      fill_in 'email', with: 'email@email.com'
-      fill_in 'password', with: 'password'
-      fill_in 'password_confirmation', with: 'password'
-      click_button 'login'
-      expect(page).to have_content 'Login successful'
+      login_user
     end
 
     it 'can edit user' do

@@ -1,4 +1,4 @@
-<h1>Creating new Card in Deck: <%= current_user.decks.find(session[:current_deck_id]).name %></h1>
+<h1>Creating new Card in Deck: <%= current_user.decks.find(current_user.current_deck_id).name %></h1>
 <h2>If you want to create card in another deck please activate it.</h2>
 <%= simple_form_for(@card, html: {class: 'form-horizontal'}) do |form| %>
   <% if @card.errors.any? %>
