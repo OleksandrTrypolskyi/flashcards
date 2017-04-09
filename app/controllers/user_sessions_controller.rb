@@ -14,6 +14,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
+    session[:current_deck_id] = nil
     redirect_to(:root, notice: 'Logged out')
   end
 end

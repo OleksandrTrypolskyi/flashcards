@@ -88,3 +88,19 @@ body {
     border: 10px solid lightgray;
     border-radius: 50px;
  }
+
+
+ .decks_table {
+   border-collapse: collapse;
+   width: 100%;
+ }
+
+ .decks_table td, .decks_table th {
+   border: 1px solid black;
+   text-align: center;
+ }
+
+ .decks_table a {
+   display: inline-block;
+   padding: 0 20px;
+ }

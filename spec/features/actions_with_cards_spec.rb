@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Actions with cards', :type => :feature do
+RSpec.feature 'Actions with cards:', :type => :feature do
   let!(:user) { create :user_with_cards }
 
   describe 'When not logged in' do
@@ -25,15 +25,17 @@ RSpec.feature 'Actions with cards', :type => :feature do
     end
   end
 
-  describe 'When logged in' do
+  describe 'When logged in and there is activated deck' do
     before(:each) do
       visit login_path
       expect(page).to have_content 'Login'
       fill_in 'email', with: user.email
       fill_in 'password', with: 'password'
-      fill_in 'password_confirmation', with: 'password'
       click_button 'login'
       expect(page).to have_content 'Login successful'
+      visit decks_path
+      click_on 'Activate Deck'
+      expect(page).to have_content 'Deck was activated.'
     end
 
     it 'can create card' do
@@ -45,22 +47,43 @@ RSpec.feature 'Actions with cards', :type => :feature do
       expect(page).to have_content('card')
     end
 
+
     it 'can show all users cards' do
-      visit '/cards'
-      expect(page).to have_content(user.cards.first.original_text)
+      visit '/cards/new'
+      fill_in 'card_original_text', with: 'card'
+      fill_in 'card_translated_text', with: 'карточка'
+      click_button 'Create Card'
+      visit cards_path
+      expect(page).to have_content('карточка')
     end
 
     it 'can show card' do
-      visit "/cards/#{user.cards.first.id}"
-      expect(page).to have_content(user.cards.first.translated_text)
+      visit "/cards/#{user.decks.first.cards.first.id}"
+      expect(page).to have_content(user.decks.take.cards.take.translated_text)
     end
 
     it 'can edit card' do
-      visit "/cards/#{user.cards.first.id}/edit"
+      visit "/cards/#{user.decks.take.cards.take.id}/edit"
       fill_in 'card_original_text', with: 'card'
       fill_in 'card_translated_text', with: 'карточка'
       click_button 'Update Card'
       expect(page).to have_content('card')
+    end
+  end
+
+  describe 'When logged in but there is not activated deck' do
+    before(:each) do
+      visit login_path
+      expect(page).to have_content 'Login'
+      fill_in 'email', with: user.email
+      fill_in 'password', with: 'password'
+      click_button 'login'
+      expect(page).to have_content 'Login successful'
+    end
+
+    it 'cannot create card' do
+      visit new_card_path
+      expect(page).to have_content 'Cards can be created only in a deck. Please choose or create deck.'
     end
   end
 end

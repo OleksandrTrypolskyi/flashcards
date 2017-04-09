@@ -19,7 +19,10 @@ RSpec.feature 'Card checking', :type => :feature do
       fill_in 'password_confirmation', with: 'password'
       click_button 'login'
       expect(page).to have_content 'Login successful'
-      user.cards.first.update_attribute(:review_date, Date.today - 10.days)
+      user.decks.first.cards.first.update_attribute(:review_date, Date.today - 10.days)
+      visit decks_path
+      click_on 'Activate Deck'
+      expect(page).to have_content 'Deck was activated.'
       visit root_path
       expect(page).to have_content 'Do you remember the translation of this word:'
     end
@@ -39,7 +42,7 @@ RSpec.feature 'Card checking', :type => :feature do
     end
 
     it 'Displays correct view of home page' do
-      user.cards.first.update_attribute(:review_date, Date.today + 10.days)
+      user.decks.first.cards.first.update_attribute(:review_date, Date.today + 10.days)
       visit root_path
       expect(page).to have_content 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
     end

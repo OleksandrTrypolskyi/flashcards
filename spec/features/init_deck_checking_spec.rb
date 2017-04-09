@@ -13,10 +13,6 @@ RSpec.feature 'Init_deck_checking', :type => :feature do
       click_button 'login'
       expect(page).to have_content 'Login successful'
     end
-    it 'shows_link_for_creation_deck' do
-      visit root_path
-      expect(page).to have_content('Add Deck')
-    end
 
     it 'propose_to_create_deck_when_try_to_create_card' do
       visit new_card_path

@@ -7,7 +7,6 @@ FactoryGirl.define do
     factory :user_with_cards do
       after(:create) do |user|
         create_list(:deck, 1, user: user)
-        create_list(:card, 1, user: user)
       end
     end
   end

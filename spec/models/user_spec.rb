@@ -8,8 +8,8 @@ require 'rails_helper'
   it 'user_and_his_cards_must_be_valid' do
     user.valid?
     expect(user.errors).to be_empty
-    user.cards.first.valid?
-    expect(user.cards.first.errors).to be_empty
+    user.decks.take.cards.first.valid?
+    expect(user.decks.take.cards.first.errors).to be_empty
   end
 
   it 'downcase_email_after_save' do
