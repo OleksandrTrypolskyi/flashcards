@@ -21,4 +21,6 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
+
+  belongs_to :current_deck, class_name: Deck, foreign_key: 'current_deck_id'
 end
