@@ -17,3 +17,7 @@
    <<: *default
    database: test_databases
    username: user1
+
+production:
+  <<: *default
+  database: dev_database
