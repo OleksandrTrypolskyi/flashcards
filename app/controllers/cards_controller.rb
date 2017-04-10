@@ -1,7 +1,6 @@
 class CardsController < ApplicationController
   before_action :logged_in?
   before_action :has_decks?, only: [:new, :create]
-  before_action :find_deck, only: [:new, :create]
   before_action :find_card, only: [:edit, :update, :show, :destroy]
 
   def index
@@ -11,11 +10,11 @@ class CardsController < ApplicationController
   def show; end
 
   def new
-    @card = @deck.cards.build
+    @card = current_user.current_deck.cards.build
   end
 
   def create
-    @card = @deck.cards.build(card_params)
+    @card = current_user.current_deck.cards.build(card_params)
     @card.user_id = current_user.id
     if @card.save
       redirect_to @card
@@ -46,14 +45,9 @@ class CardsController < ApplicationController
                                  :review_date, :picture, :user_id)
   end
 
-  def find_deck
-    @deck = current_user.current_deck
-  end
-
   def find_card
-    find_deck
-    if @deck
-      @card = @deck.cards.find(params[:id])
+    if current_user.current_deck
+      @card = current_user.current_deck.cards.find(params[:id])
     else
       @card = current_user.cards.find(params[:id])
     end
