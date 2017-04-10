@@ -46,10 +46,10 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    if current_user.current_deck
-      @card = current_user.current_deck.cards.find(params[:id])
+    @card = if current_user.current_deck
+       current_user.current_deck.cards.find(params[:id])
     else
-      @card = current_user.cards.find(params[:id])
+       current_user.cards.find(params[:id])
     end
   end
 

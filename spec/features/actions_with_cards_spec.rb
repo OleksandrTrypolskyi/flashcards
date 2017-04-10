@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature 'Actions with cards:', :type => :feature do
-  let!(:user) { create :user_with_cards }
+  let!(:user) { create :user }
+  let!(:deck) { create :deck, user: user}
+  let!(:card) { create :card, user: user, deck: deck}
 
   describe 'When not logged in' do
     it 'cannot create card' do
@@ -51,12 +53,12 @@ RSpec.feature 'Actions with cards:', :type => :feature do
     end
 
     it 'can show card' do
-      visit "/cards/#{user.decks.first.cards.first.id}"
-      expect(page).to have_content(user.decks.take.cards.take.translated_text)
+      visit "/cards/#{card.id}"
+      expect(page).to have_content(card.translated_text)
     end
 
     it 'can edit card' do
-      visit "/cards/#{user.decks.take.cards.take.id}/edit"
+      visit "/cards/#{card.id}/edit"
       fill_in 'card_original_text', with: 'card'
       fill_in 'card_translated_text', with: 'карточка'
       click_button 'Update Card'

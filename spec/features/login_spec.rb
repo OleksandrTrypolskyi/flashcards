@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Login checking', :type => :feature do
-
-  let!(:user) { create :user_with_cards }
+  let!(:user) { create :user }
 
   describe 'Loggin process' do
     it 'login successful' do

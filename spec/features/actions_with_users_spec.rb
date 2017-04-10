@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Actions with users', :type => :feature do
-  let!(:user) { create :user_with_cards }
+  let!(:user) { create :user }
 
   describe 'Creating of user' do
     before(:each) do
