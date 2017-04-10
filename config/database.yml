@@ -21,3 +21,4 @@
 production:
   <<: *default
   database: dev_database
+  username: user1
