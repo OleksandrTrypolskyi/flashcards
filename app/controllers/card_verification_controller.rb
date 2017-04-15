@@ -4,10 +4,10 @@ class CardVerificationController < ApplicationController
     @card = Card.find_by(id: params[:id])
     if @card.confirm_reviewing(params[:card][:original_text])
       @card.update_review_date_after_check
-      flash[:notice] = 'Translation is correct :)'
-      redirect_to cards_path
+      flash[:success] = 'Translation is correct :)'
+      redirect_to root_path
     else
-      flash[:alert] = 'Translation is not correct :( Try again!'
+      flash[:danger] = 'Translation is not correct :( Try again!'
       redirect_to root_path
     end
   end

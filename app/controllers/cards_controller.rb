@@ -10,16 +10,18 @@ class CardsController < ApplicationController
   def show; end
 
   def new
-    @card = current_user.current_deck.cards.build
+    @card = current_user.cards.build
   end
 
   def create
-    @card = current_user.current_deck.cards.build(card_params)
+    @card = current_user.cards.build(card_params)
     @card.user_id = current_user.id
     if @card.save
-      redirect_to @card
+      redirect_to cards_path
+      flash[:success] = "Card #{@card.original_text} was successfly created."
     else
       render 'new'
+      flash[:danger] = 'Something went wrong. Card was not created.'
     end
   end
 
@@ -27,22 +29,25 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to @card
+      redirect_to cards_path
+      flash[:success] = "Card #{@card.original_text} was successfly updated."
     else
       render 'edit'
+      flash[:danger] = 'Something went wrong. Card was not updated.'
     end
   end
 
   def destroy
     @card.destroy
     redirect_to cards_path
+    flash[:info] = 'Card was deleted.'
   end
 
   private
 
   def card_params
     params.require(:card).permit(:original_text, :translated_text,
-                                 :review_date, :picture, :user_id)
+                                 :review_date, :picture, :user_id, :deck_id)
   end
 
   def find_card

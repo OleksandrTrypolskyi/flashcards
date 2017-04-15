@@ -19,6 +19,14 @@
         <li><%= link_to 'Edit Profile', edit_user_path(current_user.id), class: "btn btn-default" %></li>
         <li><%= link_to 'Logout', logout_path, method: :post, class: "btn btn-default" %></li>
       </ul>
+      <% if current_user.current_deck %>
+      <aside>
+        <h2>
+          Active Deck:<br>
+          <span><%= current_user.current_deck.name.capitalize %></span>
+        </h2>
+      </aside>
+      <% end %>
       <% else %>
         <ul class="navigation-links nav navbar-nav navbar-right">
           <li><%= link_to 'Login with TW', auth_at_provider_path(:provider => :twitter), class: "btn btn-default" %></li>
@@ -32,7 +40,7 @@
     <section id="container">
       <% if flash %>
         <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, class: name %>
+          <div class="alert alert-<%= name %>"><%= msg %></div>
         <% end %>
       <% end %>
       <%= yield %>

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     unless current_user
-      flash[:alert] = 'Please login or register'
+      flash[:warning] = 'Please login or register'
       redirect_to login_path
     else
       current_user

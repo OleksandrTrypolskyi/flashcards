@@ -12,6 +12,7 @@
   <% end %>
   <%= form.input  :original_text %>
   <%= form.input  :translated_text %>
+  <%= form.association :deck %>
   <%= form.input  :review_date %>
   <%= form.input  :picture, as: :file %>
   <%= form.button :submit %>

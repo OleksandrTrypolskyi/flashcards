@@ -7,12 +7,13 @@
     </h2>
     <% @card.errors.full_messages.each do |error| %>
     <ul>
-      <li><%= error %>
+      <li><%= error %></li>
     </ul>
     <% end %>
   <% end %>
   <%= form.input  :original_text %>
   <%= form.input  :translated_text %>
+  <%= form.association :deck %>
   <%= form.input  :picture, as: :file %>
   <%= hidden_field_tag 'review_date', Date.today %>
   <%= form.button :submit %>

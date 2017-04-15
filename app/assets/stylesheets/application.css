@@ -35,10 +35,17 @@ body {
    border-radius: 0px;
  }
 
- header > h1 {
+ header > h1 > a {
    float: left;
    margin: 0;
-   color: #ffffff;
+   color: white;
+ }
+
+ header > h1 > a:active, header > h1 > a:hover {
+   float: left;
+   margin: 0;
+   color: lightblue;
+   text-decoration: none;
  }
 
  .navigation-links {
@@ -103,4 +110,18 @@ body {
  .decks_table a {
    display: inline-block;
    padding: 0 20px;
+ }
+
+ aside {
+   position: absolute;
+   left: 20px;
+   top: 120px;
+   border: 2px solid purple;
+   border-radius: 25px;
+   padding: 15px;
+ }
+
+ aside span {
+   display: inline-block;
+   color: purple;
  }
