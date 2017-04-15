@@ -24,7 +24,7 @@ RSpec.feature 'Card checking', :type => :feature do
     it 'Card checking success' do
       fill_in 'card_original_text', with: card.original_text
       click_button 'Check'
-      expect(current_path).to eq(cards_path)
+      expect(current_path).to eq(root_path)
       expect(page).to have_content 'Translation is correct :)'
     end
 

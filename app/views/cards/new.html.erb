@@ -13,7 +13,7 @@
   <% end %>
   <%= form.input  :original_text %>
   <%= form.input  :translated_text %>
-  <%= form.association :deck %>
+  <%= form.association :deck, collection: current_user.decks %>
   <%= form.input  :picture, as: :file %>
   <%= hidden_field_tag 'review_date', Date.today %>
   <%= form.button :submit %>

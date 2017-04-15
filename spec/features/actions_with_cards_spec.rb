@@ -37,9 +37,10 @@ RSpec.feature 'Actions with cards:', :type => :feature do
       visit '/cards/new'
       fill_in 'card_original_text', with: 'card'
       fill_in 'card_translated_text', with: 'карточка'
+      select(deck.name, from: 'card_deck_id')
       click_button 'Create Card'
       # Epext to see the page of the just created card
-      expect(page).to have_content('card')
+      expect(page).to have_content('Card card was successfly created.')
     end
 
 
@@ -47,6 +48,7 @@ RSpec.feature 'Actions with cards:', :type => :feature do
       visit '/cards/new'
       fill_in 'card_original_text', with: 'card'
       fill_in 'card_translated_text', with: 'карточка'
+      select(deck.name, from: 'card_deck_id')
       click_button 'Create Card'
       visit cards_path
       expect(page).to have_content('карточка')
