@@ -10,7 +10,6 @@ class OauthsController < ApplicationController
       redirect_to root_path, :sucess => "Logged in from #{provider.titleize}!"
     else
       begin
-        byebug
         @user = create_from(provider)
         reset_session
         auto_login(@user)
