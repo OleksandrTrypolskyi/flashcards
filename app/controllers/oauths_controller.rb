@@ -10,6 +10,7 @@ class OauthsController < ApplicationController
       redirect_to root_path, :sucess => "Logged in from #{provider.titleize}!"
     else
       begin
+        debugger
         @user = create_from(provider)
         reset_session
         auto_login(@user)
@@ -20,7 +21,7 @@ class OauthsController < ApplicationController
     end
 end
 
-  private
+private
   def auth_params
    params.permit(:code, :provider)
   end
