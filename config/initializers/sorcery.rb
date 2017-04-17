@@ -103,6 +103,7 @@ Rails.application.config.sorcery.configure do |config|
   config.twitter.callback_url = "https://pacific-lowlands-56787.herokuapp.com/oauth/callback?provider=twitter"
   config.twitter.user_info_mapping = {:email => "email"}
   #
+  config.facebook.instance_variable_set "@parse", :json
   config.facebook.key = ENV["FACEBOOK_KEY"]
   config.facebook.secret = ENV["FACEBOOK_SECRET"]
   config.facebook.callback_url = "https://pacific-lowlands-56787.herokuapp.com/oauth/callback?provider=facebook"
