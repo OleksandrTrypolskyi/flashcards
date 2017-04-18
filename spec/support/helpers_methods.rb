@@ -12,3 +12,8 @@ def activate_deck
   click_on 'Activate Deck'
   expect(page).to have_content 'Deck was activated.'
 end
+
+def review_date_helper(date, number)
+  expect(card.review_date.to_date).to eql(date.to_date)
+  expect(card.number_of_successfull_checks).to eql(number)
+end
