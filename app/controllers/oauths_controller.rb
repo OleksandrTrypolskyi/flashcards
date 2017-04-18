@@ -5,16 +5,21 @@ class OauthsController < ApplicationController
   end
 
   def callback
-    provider = auth_params[:provider]
+    provider = params[:provider]
     if @user = login_from(provider)
-      redirect_to root_path, :sucess => "Logged in from #{provider.titleize}!"
+      redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
-      begin
-        @user = create_from(provider)
-        reset_session
-        auto_login(@user)
-        redirect_to root_path, :success => "Logged in from #{provider.titleize}!"
-      rescue
+       # Initialize new user from provider informations.
+       # If a provider doesn't give required informations or username/email is already taken,
+       # we store provider/user infos into a session
+       @user = create_and_validate_from(provider)
+       if @user = User.find_by_email(session[:incomplete_user][:user_hash][:email])
+         @user.authentications.build(provider: provider,
+         uid: session[:incomplete_user][:provider][:uid]).save(validate: false)
+         auto_login(@user)
+         redirect_to root_path, :notice => "Logged in from #{provider.titleize}!
+         Added new authentication to user: #{@user.email}"
+      else
         redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
       end
     end
