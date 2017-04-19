@@ -45,6 +45,7 @@ gem 'sorcery'
 gem 'aws-sdk'
 gem 'paperclip', '~> 5.0.0'
 gem 'paperclip-meta'
+gem 'damerau-levenshtein'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop

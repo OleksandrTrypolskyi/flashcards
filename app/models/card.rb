@@ -46,8 +46,13 @@ class Card < ApplicationRecord
 
   scope :for_review, -> { where('review_date <= ?', Time.now) }
 
-  def confirm_reviewing(original_verification)
+  def confirm_check(original_verification)
     original_text == original_verification
+  end
+
+  # User can misprint, 5 mistakes are possible.
+  def confirm_check_misprint(original_verification)
+    DamerauLevenshtein.distance(original_text, original_verification) <= 5
   end
 
   belongs_to :user

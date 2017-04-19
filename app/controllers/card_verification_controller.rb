@@ -2,8 +2,11 @@
 class CardVerificationController < ApplicationController
   def update
     @card = Card.find_by(id: params[:id])
-    if @card.confirm_reviewing(params[:card][:original_text])
+    @original_verification = params[:card][:original_text]
+    if @card.confirm_check(@original_verification)
       correct_check
+    elsif @card.confirm_check_misprint(@original_verification)
+      almost_correct_check
     else
       wrong_check
     end
@@ -14,6 +17,15 @@ class CardVerificationController < ApplicationController
   def correct_check
     @card.update_review_date_after_correct_check
     flash[:success] = "Translation is correct :)
+                       Next test: #{@card.review_date}"
+    redirect_to root_path
+  end
+
+  def almost_correct_check
+    @card.update_review_date_after_correct_check
+    flash[:success] = "Translation was almost correct.\n
+                       Correct translation of #{@card.original_text} is
+                       #{@card.translated_text}. You typed: #{@original_verification}\n
                        Next test: #{@card.review_date}"
     redirect_to root_path
   end

@@ -94,11 +94,19 @@ RSpec.describe Card, type: :model do
     end
   end
 
-  it '.confirm_reviewing_false' do
-    expect(card.confirm_reviewing('battlestart')).to be false
+  it '.confirm_check_false' do
+    expect(card.confirm_check('battlestart')).to be false
   end
 
-  it '.confirm_reviewing_true' do
-    expect(card.confirm_reviewing(card.original_text)).to be true
+  it '.confirm_chcek_true' do
+    expect(card.confirm_check(card.original_text)).to be true
+  end
+
+  it '.confirm_check_misprint_true' do
+    expect(card.confirm_check_misprint('plaen')).to be true
+  end
+
+  it '.confirm_check_misprint_false' do
+    expect(card.confirm_check_misprint('battlestart')).to be false
   end
 end

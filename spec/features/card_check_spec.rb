@@ -36,6 +36,15 @@ RSpec.feature 'Card checking', type: :feature do
       expect(page).to have_content 'Translation is not correct :( Try again!'
     end
 
+    it 'Card checking success whith few misprints' do
+      fill_in 'card_original_text', with: 'plaen'
+      click_button 'Check'
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content "Translation was almost correct.
+                         Correct translation of #{card.original_text} is
+                         #{card.translated_text}. You typed: plaen"
+    end
+
     it 'Displays correct view of home page' do
       card.update_attribute(:review_date, Date.today + 10.days)
       visit root_path
