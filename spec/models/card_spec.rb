@@ -15,8 +15,8 @@ RSpec.describe Card, :type => :model do
     expect(card.errors[:base]).not_to be_empty
   end
 
-  it '.update_review_date' do
-    card.update_review_date
+  it '.set_review_date' do
+    card.set_review_date
     expect(card.review_date.to_date).to eql(Date.today)
   end
 

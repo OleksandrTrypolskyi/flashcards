@@ -11,9 +11,9 @@ class Card < ApplicationRecord
     end
   end
 
-  before_create :update_review_date
+  before_create :set_review_date
 
-  def update_review_date
+  def set_review_date
     self.review_date = Time.now
   end
 
@@ -22,17 +22,17 @@ class Card < ApplicationRecord
     schedule = [time + 0.5.days, time + 3.days, time + 7.days,
                  time + 14.days, time + 30.days]
     number_of_wrong_checks = 0
-    if number_of_successfull_checks > 4
-      self.review_date = schedule[4]
+    self.review_date = if number_of_successfull_checks > 4
+       schedule[4]
     else
-      self.review_date = schedule.at(self.number_of_successfull_checks)
+       schedule.at(self.number_of_successfull_checks)
     end
     self.number_of_successfull_checks += 1
   end
 
   def update_review_date_after_wrong_check
     if number_of_wrong_checks == 3
-      update_review_date
+      set_review_date
       self.number_of_wrong_checks = 0
       self.number_of_successfull_checks = 0
     else
