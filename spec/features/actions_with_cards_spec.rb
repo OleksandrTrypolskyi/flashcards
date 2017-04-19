@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature 'Actions with cards:', :type => :feature do
+RSpec.feature 'Actions with cards:', type: :feature do
   let!(:user) { create :user }
-  let!(:deck) { create :deck, user: user}
-  let!(:card) { create :card, user: user, deck: deck}
+  let!(:deck) { create :deck, user: user }
+  let!(:card) { create :card, user: user, deck: deck }
 
   describe 'When not logged in' do
     it 'cannot create card' do
@@ -43,7 +43,6 @@ RSpec.feature 'Actions with cards:', :type => :feature do
       expect(page).to have_content('Card card was successfly created.')
     end
 
-
     it 'can show all users cards' do
       visit '/cards/new'
       fill_in 'card_original_text', with: 'card'
@@ -75,7 +74,8 @@ RSpec.feature 'Actions with cards:', :type => :feature do
 
     it 'cannot create card' do
       visit new_card_path
-      expect(page).to have_content 'Cards can be created only in a deck. Please choose or create deck.'
+      expect(page).to have_content 'Cards can be created only in a deck.
+                                    Please choose or create deck.'
     end
   end
 end

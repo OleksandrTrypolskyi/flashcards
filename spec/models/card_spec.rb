@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Card, :type => :model do
-
+RSpec.describe Card, type: :model do
   let(:card) { create :card }
 
   it '.original_cannot_be_similar_to_translated_successful' do
@@ -23,8 +22,10 @@ RSpec.describe Card, :type => :model do
   context '.update_review_date_after_correct_check' do
     it 'correct_parameters_after_1_check' do
       card.update_review_date_after_correct_check
-      date = Time.now + 0.5.days
-      review_date_helper(date, 1)
+      date = Date.today + 0.5.days
+      # Strange behaviour depending on time.
+      expect(card.review_date.to_date.day).to eql(date.day)
+      expect(card.number_of_successfull_checks).to eql(1)
     end
 
     it 'correct_parameters_after_2_checks' do
@@ -58,9 +59,7 @@ RSpec.describe Card, :type => :model do
     end
   end
 
-
   context '.update_review_date_after_wrong_check' do
-
     before(:each) do
       5.times do
         card.update_review_date_after_correct_check

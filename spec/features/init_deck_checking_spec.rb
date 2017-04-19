@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Init_deck_checking', :type => :feature do
+RSpec.feature 'Init_deck_checking', type: :feature do
   let!(:user) { create :user }
 
   describe 'User_who_does_not_have_deck' do

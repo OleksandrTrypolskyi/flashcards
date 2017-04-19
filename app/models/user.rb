@@ -1,3 +1,4 @@
+# File for User model
 class User < ApplicationRecord
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication

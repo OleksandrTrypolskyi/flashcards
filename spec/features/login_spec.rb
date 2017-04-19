@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Login checking', :type => :feature do
+RSpec.feature 'Login checking', type: :feature do
   let!(:user) { create :user }
 
   describe 'Loggin process' do

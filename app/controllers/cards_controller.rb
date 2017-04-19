@@ -1,10 +1,11 @@
+# File for CardsController
 class CardsController < ApplicationController
   before_action :logged_in?
   before_action :has_decks?, only: [:new, :create]
   before_action :find_card, only: [:edit, :update, :show, :destroy]
 
   def index
-      @cards = current_user.cards.all
+    @cards = current_user.cards.all
   end
 
   def show; end
@@ -52,15 +53,16 @@ class CardsController < ApplicationController
 
   def find_card
     @card = if current_user.current_deck
-       current_user.current_deck.cards.find(params[:id])
-    else
-       current_user.cards.find(params[:id])
-    end
+              current_user.current_deck.cards.find(params[:id])
+            else
+              current_user.cards.find(params[:id])
+            end
   end
 
   def has_decks?
     unless current_user.current_deck_id
-      flash[:notice] = 'Cards can be created only in a deck. Please choose or create deck.'
+      flash[:notice] = 'Cards can be created only in a deck.
+                        Please choose or create deck.'
       redirect_to decks_path
     end
   end

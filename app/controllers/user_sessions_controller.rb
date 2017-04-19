@@ -1,3 +1,4 @@
+# File for UserSessionsController
 class UserSessionsController < ApplicationController
   def new
     @user = User.new

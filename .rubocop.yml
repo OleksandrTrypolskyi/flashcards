@@ -1,5 +1,22 @@
 # These are all the cops that are enabled in the default configuration.
 
+AllCops:
+  Exclude:
+    - config/**/*
+    - db/**/*
+
+Metrics/LineLength:
+  Max: 100
+
+MethodLength:
+  Max: 35
+
+Metrics/AbcSize:
+   Enabled: false
+
+BlockLength:
+  Max: 70
+
 Style/AccessModifierIndentation:
   Description: Check indentation of private/protected visibility modifiers.
   StyleGuide: '#indent-public-private-protected'

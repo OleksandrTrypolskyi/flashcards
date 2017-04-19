@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Actions with users', :type => :feature do
+RSpec.feature 'Actions with users', type: :feature do
   let!(:user) { create :user }
 
   describe 'Creating of user' do
@@ -43,11 +43,11 @@ RSpec.feature 'Actions with users', :type => :feature do
   end
 
   describe 'When not logged in' do
-      it 'cannot edit user' do
-        visit "/users/#{user.id}/edit"
-        expect(page).to have_content('Please login or register')
-      end
-      # if cannot edit user so cannot delete user and show user.
+    # if cannot edit user so cannot delete user and show user.
+    it 'cannot edit user' do
+      visit "/users/#{user.id}/edit"
+      expect(page).to have_content('Please login or register')
+    end
   end
 
   describe 'When logged in' do

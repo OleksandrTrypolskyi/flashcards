@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature 'Card checking', :type => :feature do
+RSpec.feature 'Card checking', type: :feature do
   let!(:user) { create :user }
-  let!(:deck) { create :deck, user: user}
-  let!(:card) { create :card, user: user, deck: deck}
+  let!(:deck) { create :deck, user: user }
+  let!(:card) { create :card, user: user, deck: deck }
 
   describe 'Home page when all cards are checked' do
     it 'Displays correct view of home page when not logged in' do
@@ -18,7 +18,8 @@ RSpec.feature 'Card checking', :type => :feature do
       card.update_attribute(:review_date, Date.today - 10.days)
       activate_deck
       visit root_path
-      expect(page).to have_content("Do you remember the translation of this word: #{card.translated_text}")
+      expect(page).to have_content("Do you remember the translation
+                                    of this word: #{card.translated_text}")
     end
 
     it 'Card checking success' do
@@ -38,7 +39,8 @@ RSpec.feature 'Card checking', :type => :feature do
     it 'Displays correct view of home page' do
       card.update_attribute(:review_date, Date.today + 10.days)
       visit root_path
-      expect(page).to have_content 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
+      expect(page).to have_content 'Первый в мире удобный менеджер
+                                    флеш-карточек. Именно так.'
     end
   end
 end
