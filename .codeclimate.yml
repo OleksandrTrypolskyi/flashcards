@@ -1,8 +1,32 @@
-JavaScript: true
-Ruby: true
-Python: false
-PHP: false
-
+engines:
+  rubocop:
+    enabled: true
+    checks:
+    	Rubocop/Metrics/ClassLength:
+      	enabled: false
+      Rubocop/Style/AlignHash:
+      	enabled: false
+  brakeman:
+   	enabled: false
+    #exclude_fingerprints:
+    #- 08c185b3f764f262539a1f76997d3a89
+  eslint:
+    enabled: false
+  csslint:
+    enabled: false
+  duplication:
+  	enabled: false
+    config:
+    	languages:
+      - ruby
+      #mass_threshold: 30
+      - javascript
+ratings:
+  paths:
+  - app/**
+  - lib/**
+  - "**.rb"
+  - "**.go"
 exclude_paths:
 - 'app/assets/javascripts/bootstrap.js'
 - 'app/assets/stylesheets/bootstrap.css'
