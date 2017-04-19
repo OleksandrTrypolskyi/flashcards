@@ -18,44 +18,25 @@ class Card < ApplicationRecord
   end
 
   def update_review_date_after_correct_check
+    time = Time.now
+    schedule = [time + 0.5.days, time + 3.days, time + 7.days,
+                 time + 14.days, time + 30.days]
     number_of_wrong_checks = 0
-    update_review_date
     if number_of_successfull_checks > 4
-      self.number_of_successfull_checks += 1
-      self.review_date += 30.days
+      self.review_date = schedule[4]
+    else
+      self.review_date = schedule.at(self.number_of_successfull_checks)
     end
-    case number_of_successfull_checks
-    when 0
-      self.number_of_successfull_checks += 1
-      self.review_date += 0.5.days
-    when 1
-      self.number_of_successfull_checks += 1
-      self.review_date += 3.days
-    when 2
-      self.number_of_successfull_checks += 1
-      self.review_date += 7.days
-    when 3
-      self.number_of_successfull_checks += 1
-      self.review_date += 14.days
-    when 4
-      self.number_of_successfull_checks += 1
-      self.review_date += 30.days
-    end
-    save
+    self.number_of_successfull_checks += 1
   end
 
   def update_review_date_after_wrong_check
-    case number_of_wrong_checks
-    when 0
-      self.number_of_wrong_checks += 1
-    when 1
-      self.number_of_wrong_checks += 1
-    when 2
-      self.number_of_wrong_checks += 1
-    when 3
+    if number_of_wrong_checks == 3
       update_review_date
       self.number_of_wrong_checks = 0
       self.number_of_successfull_checks = 0
+    else
+      self.number_of_wrong_checks += 1
     end
   end
 
