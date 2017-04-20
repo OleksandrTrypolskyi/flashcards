@@ -24,4 +24,20 @@ class User < ApplicationRecord
   end
 
   belongs_to :current_deck, class_name: Deck, foreign_key: 'current_deck_id'
+
+  def self.with_cards_for_review
+    User.all.map do |user|
+      array = []
+      user.cards.map do |card|
+        array.push(card) if card.time_to_repeat?
+      end
+      user if array.any?
+    end
+  end
+
+  def cards_notification_email
+    User.with_cards_for_review.each do |user|
+      NotificationsMailer.pending_cards(user).deliver_now
+    end
+  end
 end

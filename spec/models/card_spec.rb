@@ -109,4 +109,13 @@ RSpec.describe Card, type: :model do
   it '.confirm_check_misprint_false' do
     expect(card.confirm_check_misprint('battlestart')).to be false
   end
+
+  it '.time_to_repeat? true after creation' do
+    expect(card.time_to_repeat?).to be true
+  end
+
+  it '.time_to_repeat? nil after first check' do
+    check_card(1)
+    expect(card.time_to_repeat?).to be nil
+  end
 end

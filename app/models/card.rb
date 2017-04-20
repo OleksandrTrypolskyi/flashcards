@@ -46,6 +46,10 @@ class Card < ApplicationRecord
 
   scope :for_review, -> { where('review_date <= ?', Time.now) }
 
+  def time_to_repeat?
+    true if review_date < Time.now
+  end
+
   def confirm_check(original_verification)
     original_text == original_verification
   end

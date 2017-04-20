@@ -18,4 +18,14 @@ RSpec.describe User, type: :model do
     user.save
     expect(user.email).to eq('google@google.com')
   end
+
+  it 'self.with_cards_for_review' do
+    users = User.with_cards_for_review
+    expect(users[0]).to eq(user)
+  end
+
+  it 'sends an email' do
+    expect { subject.cards_notification_email }
+    .to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
 end
