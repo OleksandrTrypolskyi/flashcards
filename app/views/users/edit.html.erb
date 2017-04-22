@@ -1,2 +1,8 @@
 <h1>Edit <%= @user.email %></h1>
+<h2>
+  <%= link_to 'Activate English Language', current_language_path(current_language: 'en'), method: :post %>
+</h2>
+<h2>
+  <%= link_to 'Activate Russian Language', current_language_path(current_language: 'ru'), method: :post %>
+</h2>
 <%= render 'form' %>

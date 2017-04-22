@@ -20,4 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  Please login or register: 'Please login or register'
+  Translation is correct :) Next test: 'Translation is correct :) Next test: '
+  Translation was almost correct.: 'Translation was almost correct.'
+  Correct translation of : 'Correct translation of '
+  . You typed: '. You typed: '
+  Next test: 'Next test: '
+  Translation is not correct :( Try again: 'Translation is not correct :( Try again'
+  Card : 'Card '
+  was successfly created.: ' was successfly created.'
+  Something went wrong. Card was not created.: 'Something went wrong. Card was not created.'
+  was successfly updated.: ' was successfly updated.'
+  Something went wrong. Card was not updated.: 'Something went wrong. Card was not updated.'
+  Card was deleted.: 'Card was deleted.'
+  Cards can be created only in a deck. Please choose or create deck.: 'Cards can be created only in a deck. Please choose or create deck.'
+  Its time to repeat words!: It's time to repeat words
+  Do you remember the translation of this word: 'Do you remember the translation of this word: '
+  The first comfortable flash cads manager: 'The first comfortable flash cads manager. Yes it is.'

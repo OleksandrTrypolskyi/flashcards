@@ -32,6 +32,11 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def set_current_language
+    current_user.update_attribute(:current_language, params[:current_language])
+    edit_user_path(current_user)
+  end
+
   private
 
   def user_params

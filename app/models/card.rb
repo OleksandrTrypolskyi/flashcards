@@ -1,11 +1,9 @@
 # File for Card model
 class Card < ApplicationRecord
   validates :original_text,   presence: true,
-            format: { with: /\A[a-zA-Zа-яА-ЯёЁ_,();:"']+\z/,
-            message: 'Only letters can be used' }
+            format: { with: /\A[a-zA-Zа-яА-ЯёЁ_,();:"']+\z/ }
   validates :translated_text, presence: true,
-            format: { with: /\A[a-zA-Zа-яА-ЯёЁ_,();:"']+\z/,
-            message: 'Only letters can be used' }
+            format: { with: /\A[a-zA-Zа-яА-ЯёЁ_,();:"']+\z/ }
   validate  :original_cannot_be_similar_to_translated
 
   def original_cannot_be_similar_to_translated

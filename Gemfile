@@ -47,6 +47,7 @@ gem 'paperclip', '~> 5.0.0'
 gem 'paperclip-meta'
 gem 'damerau-levenshtein'
 gem 'whenever', :require => false
+gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop

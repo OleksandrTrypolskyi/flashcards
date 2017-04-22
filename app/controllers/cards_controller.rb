@@ -19,10 +19,10 @@ class CardsController < ApplicationController
     @card.user_id = current_user.id
     if @card.save
       redirect_to cards_path
-      flash[:success] = "Card #{@card.original_text} was successfly created."
+      flash[:success] = "#{t('Card ')}#{@card.original_text}#{t(' was successfly created.')}"
     else
       render 'new'
-      flash[:danger] = 'Something went wrong. Card was not created.'
+      flash[:danger] = "#{t('Something went wrong. Card was not created.')}"
     end
   end
 
@@ -31,17 +31,17 @@ class CardsController < ApplicationController
   def update
     if @card.update(card_params)
       redirect_to cards_path
-      flash[:success] = "Card #{@card.original_text} was successfly updated."
+      flash[:success] = "#{t('Card ')}#{@card.original_text}#{t(' was successfly updated.')}"
     else
       render 'edit'
-      flash[:danger] = 'Something went wrong. Card was not updated.'
+      flash[:danger] = "#{t('Something went wrong. Card was not updated.')}"
     end
   end
 
   def destroy
     @card.destroy
     redirect_to cards_path
-    flash[:info] = 'Card was deleted.'
+    flash[:info] = "#{t('Card was deleted.')}"
   end
 
   private
@@ -61,8 +61,8 @@ class CardsController < ApplicationController
 
   def has_decks?
     unless current_user.current_deck_id
-      flash[:notice] = 'Cards can be created only in a deck.
-                        Please choose or create deck.'
+      flash[:notice] = "#{t('Cards can be created only in a deck.
+                        Please choose or create deck.')}"
       redirect_to decks_path
     end
   end
