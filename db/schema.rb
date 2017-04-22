@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(version: 20170422100138) do
     t.datetime "review_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "deck_id"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.text     "picture_meta"
+    t.integer  "user_id"
+    t.integer  "deck_id"
     t.integer  "number_of_successfull_checks", default: 0
     t.integer  "number_of_wrong_checks",       default: 0
     t.index ["user_id"], name: "index_cards_on_user_id", using: :btree

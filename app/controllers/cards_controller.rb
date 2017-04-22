@@ -19,7 +19,7 @@ class CardsController < ApplicationController
     @card.user_id = current_user.id
     if @card.save
       redirect_to cards_path
-      flash[:success] = "#{t('Card ')}#{@card.original_text}#{t(' was successfly created.')}"
+      flash[:success] = "#{t('Card')}#{@card.original_text}#{t('was successfly created')}"
     else
       render 'new'
       flash[:danger] = "#{t('Something went wrong. Card was not created.')}"
@@ -61,8 +61,7 @@ class CardsController < ApplicationController
 
   def has_decks?
     unless current_user.current_deck_id
-      flash[:notice] = "#{t('Cards can be created only in a deck.
-                        Please choose or create deck.')}"
+      flash[:notice] = "#{t('Cards can be created only in a deck. Please choose or create deck')}"
       redirect_to decks_path
     end
   end

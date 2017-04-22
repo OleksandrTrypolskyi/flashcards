@@ -74,8 +74,7 @@ RSpec.feature 'Actions with cards:', type: :feature do
 
     it 'cannot create card' do
       visit new_card_path
-      expect(page).to have_content 'Cards can be created only in a deck.
-                                    Please choose or create deck.'
+      expect(page).to have_content 'Cards can be created only in a deck.'
     end
   end
 end

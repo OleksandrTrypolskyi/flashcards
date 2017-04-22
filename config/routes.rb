@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
+  get 'home' => 'home#index'
+
+  root 'home#index'
 
   scope "(:locale)", locale: /en|ru/ do
-
-    get 'home' => 'home#index'
-
-    root 'home#index'
 
     resources :cards
 

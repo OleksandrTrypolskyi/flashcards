@@ -16,22 +16,22 @@ class CardVerificationController < ApplicationController
 
   def correct_check
     @card.update_review_date_after_correct_check
-    flash[:success] = "#{t('Translation is correct :) Next test: ')}#{@card.review_date}"
+    flash[:success] = "#{t('Translation is correct :) Next test')}#{@card.review_date}"
     redirect_to root_path
   end
 
   def almost_correct_check
     @card.update_review_date_after_correct_check
-    flash[:success] = "#{t('Translation was almost correct.')}\n
-                       #{t('Correct translation of ')}#{@card.original_text} is
-                       #{@card.translated_text}#{(t'. You typed: ')}#{@original_verification}\n
-                       #{t('Next test: ')}#{@card.review_date}"
+    flash[:success] = "#{t('Translation was almost correct')}\n
+                       #{t('Correct translation of')}#{@card.original_text}#{t('is')}
+                       #{@card.translated_text}#{t('You typed')}#{@original_verification}\n
+                       #{t('Next test')}#{@card.review_date}"
     redirect_to root_path
   end
 
   def wrong_check
     @card.update_review_date_after_wrong_check
-    flash[:danger] = "#{t('Translation is not correct :( Try again!')}"
+    flash[:danger] = "#{t('Translation is not correct :( Try again')}"
     redirect_to root_path
   end
 end
