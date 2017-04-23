@@ -6,6 +6,7 @@
     <%= simple_form_for @card, url: { controller: :card_verification, action: :update } do |form| %>
       <%= form.input  :original_text, input_html: {value: ''}  %>
       <%= hidden_field_tag 'id', @card.id %>
+      <%= hidden_field_tag 'time', params[:time], value: 0 %>
       <%= form.button :submit, value: 'Check', style: 'width: 100%' %>
     <% end %>
   <% else %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422100138) do
+ActiveRecord::Schema.define(version: 20170423110250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170422100138) do
     t.integer  "deck_id"
     t.integer  "number_of_successfull_checks", default: 0
     t.integer  "number_of_wrong_checks",       default: 0
+    t.integer  "interval"
+    t.float    "e_factor",                     default: 2.5
     t.index ["user_id"], name: "index_cards_on_user_id", using: :btree
   end
 

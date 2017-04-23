@@ -19,77 +19,70 @@ RSpec.describe Card, type: :model do
     expect(card.review_date.to_date).to eql(Date.today)
   end
 
-  context '.update_review_date_after_correct_check' do
+  context 'ReviewDateCalculator.review_date_after_correct_check' do
+    # check_card(number, quality)
+    # quality can be only 1..5
+    # review_date_helper(number_of_successfull_checks)
     it 'correct_parameters_after_1_check' do
-      card.update_review_date_after_correct_check
-      # date = Date.today + 0.5.days
-      # Strange behaviour depending on time.
-      # expect(card.review_date.to_date.day).to eql(date.day)
-      expect(card.number_of_successfull_checks).to eql(1)
+      check_card(1, 5)
+      review_date_helper(1)
     end
 
     it 'correct_parameters_after_2_checks' do
-      check_card(2)
-      date = Time.now + 3.days
-      review_date_helper(date, 2)
+      check_card(2, 4)
+      review_date_helper(2)
     end
 
     it 'correct_parameters_after_3_checks' do
-      check_card(3)
-      date = Time.now + 7.days
-      review_date_helper(date, 3)
+      check_card(3, 3)
+      review_date_helper(3)
     end
 
     it 'correct_parameters_after_4_checks' do
-      check_card(4)
-      date = Time.now + 14.days
-      review_date_helper(date, 4)
+      check_card(4, 2)
+      review_date_helper(4)
     end
 
     it 'correct_parameters_after_5_checks' do
-      check_card(5)
-      date = Time.now + 30.days
-      review_date_helper(date, 5)
+      check_card(5, 1)
+      review_date_helper(5)
     end
 
     it 'correct_parameters_after_6_checks' do
-      check_card(6)
-      date = Time.now + 30.days
-      review_date_helper(date, 6)
+      check_card(6, 4)
+      review_date_helper(6)
     end
   end
 
-  context '.update_review_date_after_wrong_check' do
+  context 'ReviewDateCalculator.review_date_after_wrong_check' do
     before(:each) do
-      5.times do
-        card.update_review_date_after_correct_check
-      end
-      @date = Time.now + 30.days
-      review_date_helper(@date, 5)
+      check_card(5, 1)
+      review_date_helper(5)
     end
 
     it 'same_review_date_after_1_wrong_check' do
-      card.update_review_date_after_wrong_check
+      wrong_check_card(1)
       expect(card.number_of_wrong_checks).to eql(1)
-      review_date_helper(@date, 5)
+      review_date_helper(5)
     end
 
     it 'same_review_date_after_2_wrong_checks' do
       wrong_check_card(2)
       expect(card.number_of_wrong_checks).to eql(2)
-      review_date_helper(@date, 5)
+      review_date_helper(5)
     end
 
     it 'same_review_date_after_3_wrong_checks' do
       wrong_check_card(3)
       expect(card.number_of_wrong_checks).to eql(3)
-      review_date_helper(@date, 5)
+      review_date_helper(5)
     end
 
     it 'reset_parameters_after_4_wrong_checks' do
       wrong_check_card(4)
       date = Time.now
-      review_date_helper(date, 0)
+      expect(card.review_date.to_date).to eql(date.to_date)
+      expect(card.number_of_successfull_checks).to eql(0)
       expect(card.number_of_wrong_checks).to eql(0)
     end
   end

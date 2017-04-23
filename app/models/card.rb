@@ -18,30 +18,6 @@ class Card < ApplicationRecord
     self.review_date = Time.now
   end
 
-  def update_review_date_after_correct_check
-    time = Time.now
-    schedule = [time + 0.5.days, time + 3.days, time + 7.days,
-                 time + 14.days, time + 30.days]
-    number_of_wrong_checks = 0
-    self.review_date = if number_of_successfull_checks > 4
-                         schedule[4]
-                       else
-                         schedule[number_of_successfull_checks]
-                       end
-    self.number_of_successfull_checks += 1
-    save
-  end
-
-  def update_review_date_after_wrong_check
-    if number_of_wrong_checks == 3
-      set_review_date
-      self.number_of_wrong_checks = 0
-      self.number_of_successfull_checks = 0
-    else
-      self.number_of_wrong_checks += 1
-    end
-  end
-
   scope :for_review, -> { where('review_date <= ?', Time.now) }
 
   def confirm_check(original_verification)

@@ -13,19 +13,20 @@ def activate_deck
   expect(page).to have_content 'Deck was activated.'
 end
 
-def review_date_helper(date, number)
+def review_date_helper(number)
+  date = Time.now + card.interval.days
   expect(card.review_date.to_date).to eql(date.to_date)
   expect(card.number_of_successfull_checks).to eql(number)
 end
 
-def check_card(number)
+def check_card(number, quality)
   number.times do
-    card.update_review_date_after_correct_check
+    ReviewDateCalculator.new(card).review_date_after_successful_check(quality)
   end
 end
 
 def wrong_check_card(number)
   number.times do
-    card.update_review_date_after_wrong_check
+    ReviewDateCalculator.new(card).review_date_after_wrong_check
   end
 end

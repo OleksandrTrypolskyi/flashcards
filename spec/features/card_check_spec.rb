@@ -48,7 +48,7 @@ RSpec.feature 'Card checking', type: :feature do
     it 'Displays correct view of home page' do
       card.update_attribute(:review_date, Date.today + 10.days)
       visit root_path
-      expect(page).to have_content 'The first comfortable flash cads manager.
+      expect(page).to have_content 'The first comfortable flash cards manager.
                                     Yes it is.'
     end
   end
