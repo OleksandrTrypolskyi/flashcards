@@ -41,13 +41,13 @@ GEM
     addressable (2.4.0)
     arel (7.1.4)
     ast (2.3.0)
-    aws-sdk (2.9.10)
-      aws-sdk-resources (= 2.9.10)
-    aws-sdk-core (2.9.10)
+    aws-sdk (2.9.11)
+      aws-sdk-resources (= 2.9.11)
+    aws-sdk-core (2.9.11)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.10)
-      aws-sdk-core (= 2.9.10)
+    aws-sdk-resources (2.9.11)
+      aws-sdk-core (= 2.9.11)
     aws-sigv4 (1.0.0)
     backports (3.7.0)
     bcrypt (3.1.11)
@@ -136,6 +136,7 @@ GEM
     multipart-post (2.0.0)
     net-http-persistent (2.9.4)
     net-http-pipeline (1.0.1)
+    newrelic_rpm (4.1.0.333)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -197,6 +198,8 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    rollbar (2.14.1)
+      multi_json
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -299,6 +302,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  newrelic_rpm
   nio4r
   nokogiri
   paperclip (~> 5.0.0)
@@ -308,6 +312,7 @@ DEPENDENCIES
   rack
   rails (~> 5.0.2)
   rails-i18n (~> 5.0.0)
+  rollbar
   rspec-rails (~> 3.5)
   rubocop (~> 0.47.1)
   sass-rails (~> 5.0)
