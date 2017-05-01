@@ -4,24 +4,23 @@ RSpec.feature 'Card checking', type: :feature do
   let!(:user) { create :user }
   let!(:deck) { create :deck, user: user }
   let!(:card) { create :card, user: user, deck: deck }
-  
-  before(:each) do
-    page.driver.header('Accept-Language', 'en')
-  end
 
   describe 'Home page when all cards are checked' do
     it 'Displays correct view of home page when not logged in' do
+      page.driver.header('Accept-Language', 'en')
       visit root_path
       expect(page).to have_content 'Please login or register'
     end
   end
 
-  describe 'Card checking' do
+  describe 'Card checking', js: true do
     before(:each) do
+      page.driver.add_header('Accept-Language', 'en')
       login_user
       card.update_attribute(:review_date, Date.today - 10.days)
       activate_deck
       visit root_path
+      click_button 'I am ready'
       expect(page).to have_content("Do you remember the translation
                                     of this word: #{card.translated_text}")
     end
