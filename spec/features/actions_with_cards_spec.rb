@@ -5,6 +5,10 @@ RSpec.feature 'Actions with cards:', type: :feature do
   let!(:deck) { create :deck, user: user }
   let!(:card) { create :card, user: user, deck: deck }
 
+  before(:each) do
+    page.driver.header('Accept-Language', 'en')
+  end
+
   describe 'When not logged in' do
     it 'cannot create card' do
       visit 'cards/new'

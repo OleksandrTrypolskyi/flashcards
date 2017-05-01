@@ -1,0 +1,24 @@
+<% if flash %>
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name %>"><%= msg %></div>
+  <% end %>
+<% end %>
+<% if @card %>
+  <h1 id='check_h1'><%= "#{t('Its time to repeat words')}" %></h1>
+  <h2>Are you ready?</h2>
+  <button id="link_for_check" class="btn btn-success">I am ready!!</button>
+  <section id="section_for_check">
+  <h3><%= "#{t('Do you remember the translation of this word')}" %><%= @card.translated_text %>?</h3>
+  <% if @card.picture_file_name %>
+    <div class="card_image"><%= image_tag @card.picture.url %></div>
+  <% end %>
+  <%= simple_form_for @card, url: { controller: :card_verification, action: :update }, remote: true do |form| %>
+    <%= form.input  :original_text, input_html: { value: '' }  %>
+    <%= hidden_field_tag 'id', @card.id %>
+    <%= hidden_field_tag 'time', params[:time], value: 0 %>
+    <%= form.button :submit, value: 'Check', style: 'width: 100%' %>
+  <% end %>
+  </section>
+<% else %>
+  <h3><%= "#{t('The first comfortable flash cads manager')}" %></h3>
+<% end %>

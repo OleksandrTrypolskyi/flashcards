@@ -1,15 +1,3 @@
-<section class='index-page'>
-  <% if @card %>
-    <h1><%= "#{t('Its time to repeat words')}" %></h1>
-    <h2><%= "#{t('Do you remember the translation of this word')}" %><%= @card.translated_text %>?</h2>
-    <div class="card_image"><%= image_tag @card.picture.url %></div>
-    <%= simple_form_for @card, url: { controller: :card_verification, action: :update } do |form| %>
-      <%= form.input  :original_text, input_html: {value: ''}  %>
-      <%= hidden_field_tag 'id', @card.id %>
-      <%= hidden_field_tag 'time', params[:time], value: 0 %>
-      <%= form.button :submit, value: 'Check', style: 'width: 100%' %>
-    <% end %>
-  <% else %>
-  <h3><%= "#{t('The first comfortable flash cads manager')}" %></h3>
-  <% end %>
+<section class='index-page' id='home_index'>
+  <%= render 'home/check' %>
 </section>

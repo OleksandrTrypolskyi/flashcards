@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.feature 'Actions with users', type: :feature do
   let!(:user) { create :user }
 
+  before(:each) do
+    page.driver.header('Accept-Language', 'en')
+  end
+
   describe 'Creating of user' do
     before(:each) do
       visit registration_path

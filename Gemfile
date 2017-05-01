@@ -79,6 +79,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
   gem 'travis'
+  gem 'poltergeist'
 end
 # Use for correct work of Travis Ci
 gem 'nio4r'

@@ -61,6 +61,10 @@ body {
    text-align: center;
  }
 
+#section_for_check {
+  display: none;
+}
+
  .cards-index-table {
    border-collapse: collapse;
    width: 100%;

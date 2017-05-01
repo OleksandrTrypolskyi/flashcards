@@ -4,6 +4,10 @@ RSpec.feature 'Card checking', type: :feature do
   let!(:user) { create :user }
   let!(:deck) { create :deck, user: user }
   let!(:card) { create :card, user: user, deck: deck }
+  
+  before(:each) do
+    page.driver.header('Accept-Language', 'en')
+  end
 
   describe 'Home page when all cards are checked' do
     it 'Displays correct view of home page when not logged in' do
@@ -25,21 +29,18 @@ RSpec.feature 'Card checking', type: :feature do
     it 'Card checking success' do
       fill_in 'card_original_text', with: card.original_text
       click_button 'Check'
-      expect(current_path).to eq(root_path)
       expect(page).to have_content 'Translation is correct :)'
     end
 
     it 'Card checking fails' do
       fill_in 'card_original_text', with: 'wrong_translation'
       click_button 'Check'
-      expect(current_path).to eq(root_path)
       expect(page).to have_content 'Translation is not correct :( Try again!'
     end
 
     it 'Card checking success whith few misprints' do
       fill_in 'card_original_text', with: 'plaen'
       click_button 'Check'
-      expect(current_path).to eq(root_path)
       expect(page).to have_content "Translation was almost correct.
                          Correct translation of #{card.original_text} is
                          #{card.translated_text}. You typed: plaen"

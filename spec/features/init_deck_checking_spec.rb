@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.feature 'Init_deck_checking', type: :feature do
   let!(:user) { create :user }
 
+  before(:each) do
+    page.driver.header('Accept-Language', 'en')
+  end
+
   describe 'User_who_does_not_have_deck' do
     before(:each) do
       login_user
