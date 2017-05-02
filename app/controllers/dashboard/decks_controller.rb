@@ -1,5 +1,5 @@
 # File for DecksController
-class DecksController < ApplicationController
+class Dashboard::DecksController < ApplicationController
   before_action :logged_in?
   before_action :find_deck, only: [:show, :edit, :update, :destroy]
 
@@ -16,7 +16,7 @@ class DecksController < ApplicationController
   def create
     @deck = current_user.decks.build(deck_params)
     if @deck.save
-      redirect_to decks_path
+      redirect_to dashboard_decks_path
       flash[:success] = "Deck #{@deck.name} was successfly created."
     else
       render 'new'
@@ -28,7 +28,7 @@ class DecksController < ApplicationController
 
   def update
     if @deck.update(deck_params)
-      redirect_to decks_path
+      redirect_to dashboard_decks_path
       flash[:sucess] = "Deck #{@deck.name} was successfly updated."
     else
       render 'edit'
@@ -44,7 +44,7 @@ class DecksController < ApplicationController
 
   def destroy
     @deck.destroy
-    redirect_to decks_path
+    redirect_to dashboard_decks_path
     flash[:info] = 'Deck was deleted.'
   end
 

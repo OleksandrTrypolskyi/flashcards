@@ -9,7 +9,7 @@ RSpec.feature 'Actions with users', type: :feature do
 
   describe 'Creating of user' do
     before(:each) do
-      visit registration_path
+      visit home_registration_path
     end
 
     it 'user can be registered and logged in' do
@@ -49,7 +49,7 @@ RSpec.feature 'Actions with users', type: :feature do
   describe 'When not logged in' do
     # if cannot edit user so cannot delete user and show user.
     it 'cannot edit user' do
-      visit "/users/#{user.id}/edit"
+      visit "dashboard/users/#{user.id}/edit"
       expect(page).to have_content('Please login or register')
     end
   end
@@ -60,7 +60,7 @@ RSpec.feature 'Actions with users', type: :feature do
     end
 
     it 'can edit user' do
-      visit "/users/#{user.id}/edit"
+      visit edit_dashboard_user_path('en', user.id)
       expect(page).to have_content("Edit #{user.email}")
       fill_in 'user_email', with: 'another@emaill.ruru'
       fill_in 'user_password', with: 'strongpassword'

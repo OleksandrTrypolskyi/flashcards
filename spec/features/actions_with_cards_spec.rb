@@ -11,22 +11,22 @@ RSpec.feature 'Actions with cards:', type: :feature do
 
   describe 'When not logged in' do
     it 'cannot create card' do
-      visit 'cards/new'
+      visit 'dashboard/cards/new'
       expect(page).to have_content('Please login or register')
     end
 
     it 'cannot show all users cards' do
-      visit 'cards'
+      visit 'dashboard/cards'
       expect(page).to have_content('Please login or register')
     end
 
     it 'cannot show card' do
-      visit 'cards/45'
+      visit 'dashboard/cards/45'
       expect(page).to have_content('Please login or register')
     end
 
     it 'cannot edit card' do
-      visit 'cards/45/edit'
+      visit 'dashboard/cards/45/edit'
       expect(page).to have_content('Please login or register')
     end
   end
@@ -38,7 +38,7 @@ RSpec.feature 'Actions with cards:', type: :feature do
     end
 
     it 'can create card' do
-      visit '/cards/new'
+      visit 'dashboard/cards/new'
       fill_in 'card_original_text', with: 'card'
       fill_in 'card_translated_text', with: 'карточка'
       select(deck.name, from: 'card_deck_id')
@@ -48,22 +48,22 @@ RSpec.feature 'Actions with cards:', type: :feature do
     end
 
     it 'can show all users cards' do
-      visit '/cards/new'
+      visit 'dashboard/cards/new'
       fill_in 'card_original_text', with: 'card'
       fill_in 'card_translated_text', with: 'карточка'
       select(deck.name, from: 'card_deck_id')
       click_button 'Create Card'
-      visit cards_path
+      visit dashboard_cards_path
       expect(page).to have_content('карточка')
     end
 
     it 'can show card' do
-      visit "/cards/#{card.id}"
+      visit "dashboard/cards/#{card.id}"
       expect(page).to have_content(card.translated_text)
     end
 
     it 'can edit card' do
-      visit "/cards/#{card.id}/edit"
+      visit "dashboard/cards/#{card.id}/edit"
       fill_in 'card_original_text', with: 'card'
       fill_in 'card_translated_text', with: 'карточка'
       click_button 'Update Card'
@@ -77,7 +77,7 @@ RSpec.feature 'Actions with cards:', type: :feature do
     end
 
     it 'cannot create card' do
-      visit new_card_path
+      visit new_dashboard_card_path
       expect(page).to have_content 'Cards can be created only in a deck.'
     end
   end

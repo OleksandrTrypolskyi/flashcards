@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def logged_in?
     unless current_user
       flash[:warning] = "#{t('Please login or register')}"
-      redirect_to login_path
+      redirect_to home_login_path
     else
       current_user
     end

@@ -1,5 +1,5 @@
 # File for UsersController
-class UsersController < ApplicationController
+class Dashboard::UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :show, :destroy]
   def show; end
 
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      redirect_to @user
+      redirect_to dashboard_user_path(@user)
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to dashboard_user_path(@user)
     else
       render 'edit'
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def set_current_language
     current_user.update_attribute(:current_language, params[:current_language])
-    edit_user_path(current_user)
+    edit_dashboard_user_path(current_user)
   end
 
   private

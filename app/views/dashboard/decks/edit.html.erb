@@ -1,5 +1,6 @@
-<h1>Creating new Deck</h1>
-<%= simple_form_for(@deck, html: {class: 'form-horizontal'}) do |form| %>
+<h1>Edit Deck: <%= @deck.name.to_s.capitalize %></h1>
+<%= simple_form_for @deck, html: {class: 'form-horizontal'},
+    url: { controller: :decks, action: :update } do |form| %>
   <% if @deck.errors.any? %>
     <h2>
       <%= pluralize(@deck.errors.count, 'error')%> prohibited this deck from being created.

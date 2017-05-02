@@ -13,10 +13,10 @@
       <h1><%= link_to "Флэшкарточкер", root_path %></h1>
       <% if current_user %>
       <ul class="navigation-links nav navbar-nav navbar-right">
-        <li><%= link_to 'Decks', decks_path, class: "btn btn-default" %></li>
-        <li><%= link_to 'Cards', cards_path, class: "btn btn-default" %></li>
-        <li><%= link_to 'Add Card', new_card_path, class: "btn btn-default" %></li>
-        <li><%= link_to 'Edit Profile', edit_user_path(current_user.id), class: "btn btn-default" %></li>
+        <li><%= link_to 'Decks', dashboard_decks_path, class: "btn btn-default" %></li>
+        <li><%= link_to 'Cards', dashboard_cards_path, class: "btn btn-default" %></li>
+        <li><%= link_to 'Add Card', new_dashboard_card_path, class: "btn btn-default" %></li>
+        <li><%= link_to 'Edit Profile', edit_dashboard_user_path(current_user.id), class: "btn btn-default" %></li>
         <li><%= link_to 'Logout', logout_path, method: :post, class: "btn btn-default" %></li>
       </ul>
       <% if current_user.current_deck %>
@@ -34,8 +34,8 @@
           <li><%= link_to 'Login with TW', auth_at_provider_path(:provider => :twitter), class: "btn btn-default" %></li>
           <li><%= link_to 'Login with FB', auth_at_provider_path(:provider => :facebook), class: "btn btn-default" %></li>
           <li><%= link_to 'Login with VK', auth_at_provider_path(:provider => :vk), class: "btn btn-default" %></li>
-          <li><%= link_to 'Register', registration_path, class: "btn btn-default" %></li>
-          <li><%= link_to 'Login', login_path, class: "btn btn-default" %></li>
+          <li><%= link_to 'Register', home_registration_path, class: "btn btn-default" %></li>
+          <li><%= link_to 'Login', home_login_path, class: "btn btn-default" %></li>
         </ul>
       <% end %>
       </header>
