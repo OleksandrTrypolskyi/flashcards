@@ -13,7 +13,7 @@ RSpec.feature 'Init_deck_checking', type: :feature do
     end
 
     it 'propose_to_create_deck_when_try_to_create_card' do
-      visit new_card_path
+      visit new_dashboard_card_path
       expect(page).to have_content('Cards can be created only in a deck')
     end
   end

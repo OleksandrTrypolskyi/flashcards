@@ -13,9 +13,9 @@
       <td><%= c.review_date.day %>/<%= c.review_date.month %>/<%= c.review_date.year %></td>
       <td><%= c.deck.name %></td>
       <td>
-        <%= link_to 'Show', card_path(c) %><br>
-        <%= link_to 'Edit', edit_card_path(c) %><br>
-        <%= link_to 'Delete', card_path(c), method: :delete,
+        <%= link_to 'Show', dashboard_card_path(c) %><br>
+        <%= link_to 'Edit', edit_dashboard_card_path(c) %><br>
+        <%= link_to 'Delete', dashboard_card_path(c), method: :delete,
           data: {confirm: 'Are you sure?'} %>
       </td>
     </tr>

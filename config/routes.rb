@@ -1,30 +1,33 @@
 Rails.application.routes.draw do
-  get 'home' => 'home#index'
+  get 'home', to: 'dashboard/home#index'
 
-  root 'home#index'
+  root 'dashboard/home#index'
 
   scope "(:locale)", locale: /en|ru/ do
+    namespace :dashboard do
+      resources :cards
+      resources :users
+      resources :decks
+    end
 
-    resources :cards
+    patch 'card_verification',  to: 'dashboard/card_verification#update'
 
-    get 'cards', to: 'cards#index'
-    get 'card',  to: 'cards#show'
+    namespace :home do
+      resources :user_sessions
+    end
 
-    patch 'card_verification',  to: 'card_verification#update'
+    get 'home/registration', to: 'dashboard/users#new'
 
-    resources :users
-    get '/registration', to: 'users#new'
-    resources :user_sessions
-    get '/login', to: 'user_sessions#new'
-    post '/login', to: 'user_sessions#create'
-    post '/logout', to: 'user_sessions#destroy'
+    get 'home/login', to: 'home/user_sessions#new'
+    post 'login', to: 'home/user_sessions#create'
+    post 'logout', to: 'home/user_sessions#destroy'
 
-    post "oauth/callback" => "oauths#callback"
-    get "oauth/callback" => "oauths#callback"
-    get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+    post "oauth/callback" => "home/oauths#callback"
+    get "oauth/callback" => "home/oauths#callback"
+    get "oauth/:provider" => "home/oauths#oauth", :as => :auth_at_provider
 
-    resources :decks
-    post 'current_deck', to: 'decks#set_current_deck'
-    post 'current_language', to: 'users#set_current_language'
+
+    post 'current_deck', to: 'dashboard/decks#set_current_deck'
+    post 'current_language', to: 'dashboard/users#set_current_language'
   end
 end

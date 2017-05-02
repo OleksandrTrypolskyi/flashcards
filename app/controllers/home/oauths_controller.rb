@@ -1,5 +1,5 @@
 # File for OauthsController
-class OauthsController < ApplicationController
+class Home::OauthsController < ApplicationController
   def oauth
     login_at(auth_params[:provider])
   end

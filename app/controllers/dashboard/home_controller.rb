@@ -1,5 +1,5 @@
 # File for HomeController
-class HomeController < ApplicationController
+class Dashboard::HomeController < ApplicationController
   before_action :logged_in?
 
   def index

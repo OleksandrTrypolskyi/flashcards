@@ -1,5 +1,5 @@
 def login_user
-  visit login_path
+  visit home_login_path
   expect(page).to have_content 'Login'
   fill_in 'email', with: user.email
   fill_in 'password', with: 'password'
@@ -8,7 +8,7 @@ def login_user
 end
 
 def activate_deck
-  visit decks_path
+  visit dashboard_decks_path
   click_on 'Activate Deck'
   expect(page).to have_content 'Deck was activated.'
 end

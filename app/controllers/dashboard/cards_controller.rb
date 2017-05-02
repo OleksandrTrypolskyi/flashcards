@@ -1,5 +1,5 @@
 # File for CardsController
-class CardsController < ApplicationController
+class Dashboard::CardsController < ApplicationController
   before_action :logged_in?
   before_action :has_decks?, only: [:new, :create]
   before_action :find_card, only: [:edit, :update, :show, :destroy]
@@ -18,7 +18,7 @@ class CardsController < ApplicationController
     @card = current_user.cards.build(card_params)
     @card.user_id = current_user.id
     if @card.save
-      redirect_to cards_path
+      redirect_to dashboard_cards_path
       flash[:success] = "#{t('Card')}#{@card.original_text}#{t('was successfly created')}"
     else
       render 'new'
@@ -30,7 +30,7 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to cards_path
+      redirect_to dashboard_cards_path
       flash[:success] = "#{t('Card ')}#{@card.original_text}#{t(' was successfly updated.')}"
     else
       render 'edit'
@@ -62,7 +62,7 @@ class CardsController < ApplicationController
   def has_decks?
     unless current_user.current_deck_id
       flash[:notice] = "#{t('Cards can be created only in a deck. Please choose or create deck')}"
-      redirect_to decks_path
+      redirect_to dashboard_decks_path
     end
   end
 end

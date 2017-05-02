@@ -1,5 +1,5 @@
 <h1>Decks manager</h1>
-<h2><%= link_to 'Add Deck', new_deck_path %></h2>
+<h2><%= link_to 'Add Deck', new_dashboard_deck_path %></h2>
 <table class='table table-bordered table-striped decks_table'>
   <tr>
     <th>Deck name</th>
@@ -7,10 +7,10 @@
   </tr>
   <% @decks.each do |deck| %>
   <tr>
-    <td><%= link_to deck.name, deck_path(deck) %></td>
+    <td><%= link_to deck.name, dashboard_deck_path(deck) %></td>
     <td>
-      <%= link_to 'Edit Deck', edit_deck_path(deck) %>
-      <%= link_to 'Delet Deck', deck_path(deck), method: :delete,
+      <%= link_to 'Edit Deck', edit_dashboard_deck_path(deck) %>
+      <%= link_to 'Delet Deck', dashboard_deck_path(deck), method: :delete,
           data: {confirm: 'Are you sure?'} %>
         <%= link_to 'Activate Deck', current_deck_path(deck_id: deck.id), method: :post %>
     </td>
